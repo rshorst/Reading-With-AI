@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Reading Analysis</title>
+    <title>AI Reading Analysis - P2T Framework</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -28,6 +28,50 @@
             color: #2c3e50;
             margin-bottom: 30px;
             font-size: 2.5em;
+        }
+        
+        .ethics-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .ethics-box h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .ethics-box p {
+            color: #856404;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .stats {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            display: inline-block;
+            margin: 0 20px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
         }
         
         .tabs {
@@ -84,13 +128,13 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
-        .question-grid, .metaphor-grid, .critique-grid {
+        .question-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
         }
         
-        .question-card, .metaphor-card, .critique-card {
+        .question-card {
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -99,7 +143,7 @@
             border-left: 5px solid #3498db;
         }
         
-        .question-card:hover, .metaphor-card:hover, .critique-card:hover {
+        .question-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
@@ -114,6 +158,7 @@
         .direction {
             color: #7f8c8d;
             margin-bottom: 10px;
+            font-size: 0.95em;
         }
         
         .themes {
@@ -130,849 +175,521 @@
             color: #2c3e50;
         }
         
-        .metaphor-card {
-            border-left-color: #e74c3c;
-        }
-        
-        .critique-card {
-            border-left-color: #f39c12;
-        }
-        
-        .metaphor-title, .critique-title {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
-        
-        .description {
-            color: #555;
-            line-height: 1.5;
-        }
-        
-        .stats {
-            background: #f8f9fa;
+        .analysis-panel {
+            background: #ecf0f1;
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-top: 20px;
+            border-left: 5px solid #e74c3c;
         }
         
-        .stat-item {
-            display: inline-block;
-            margin: 0 20px;
-            text-align: center;
+        .analysis-panel h3 {
+            color: #2c3e50;
+            margin-top: 0;
         }
         
-        .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #e74c3c;
-        }
-        
-        .stat-label {
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        
-        .question-dot {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .question-dot:hover {
-            stroke-width: 3;
-            r: 6;
-        }
-        
-        .tooltip {
-            position: absolute;
-            background: rgba(0,0,0,0.9);
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            max-width: 400px;
-            z-index: 1000;
-            line-height: 1.4;
+        .analysis-panel p {
+            color: #555;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>AI Reading Analysis: Monsters to Mazes</h1>
+        <h1>AI Reading Analysis: Proximity-to-Theory Framework</h1>
+        
+        <div class="ethics-box">
+            <h3>📋 Ethics & Data Disclosure</h3>
+            <p>
+                This framework emerged from pedagogical practice, but <strong>no student data were collected under research consent or are reported here</strong>. All questions displayed (SYN-001 through ADV-DRIFT-04) are <strong>researcher-generated synthetic examples</strong>, created to illustrate the Proximity-to-Theory (P2T) framework's theoretical categories. This work presents a design contribution and pedagogical tool; empirical validation with consented participants is planned for future research.
+            </p>
+        </div>
         
         <div class="stats">
             <div class="stat-item">
-                <div class="stat-number">32</div>
-                <div class="stat-label">Unique Questions</div>
+                <div class="stat-number">54</div>
+                <div class="stat-label">Synthetic Questions</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">12</div>
-                <div class="stat-label">Alternative Metaphors</div>
+                <div class="stat-number">4</div>
+                <div class="stat-label">Proximity Zones</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">8</div>
-                <div class="stat-label">Critical Perspectives</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">6</div>
-                <div class="stat-label">Emerging Themes</div>
-            </div>
-        </div>
-        
-        <!-- Question Proximity Visualization -->
-        <div class="count-display" style="text-align: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
-            <strong>Question Proximity Analysis:</strong> 
-            <span style="color: #e74c3c;">6 Core</span> | 
-            <span style="color: #3498db;">8 Engaged</span> | 
-            <span style="color: #f39c12;">15 Tangential</span> | 
-            <span style="color: #95a5a6;">9 Drift</span> | 
-            <strong>Total: 38 Questions</strong>
-        </div>
-        
-        <div class="visualization-container" style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative;">
-            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Student Questions Mapped by Distance from Dishon's Core Arguments</h2>
-            <svg id="proximity-map" width="100%" height="800" viewBox="0 0 1200 800">
-                <!-- Proximity zones -->
-                <circle cx="600" cy="400" r="120" fill="rgba(231, 76, 60, 0.1)" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
-                <text x="600" y="290" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="14px" fill="#e74c3c">CORE ENGAGEMENT</text>
-                
-                <circle cx="600" cy="400" r="180" fill="rgba(52, 152, 219, 0.1)" stroke="#3498db" stroke-width="2" stroke-dasharray="5,5"/>
-                <text x="600" y="230" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="14px" fill="#3498db">ENGAGED ANALYSIS</text>
-                
-                <circle cx="600" cy="400" r="240" fill="rgba(241, 196, 15, 0.1)" stroke="#f1c40f" stroke-width="2" stroke-dasharray="5,5"/>
-                <text x="600" y="170" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="14px" fill="#f39c12">TANGENTIAL</text>
-                
-                <circle cx="600" cy="400" r="300" fill="rgba(149, 165, 166, 0.1)" stroke="#95a5a6" stroke-width="2" stroke-dasharray="5,5"/>
-                <text x="600" y="110" text-anchor="middle" dominant-baseline="middle" font-weight="bold" font-size="14px" fill="#7f8c8d">CONCEPTUAL DRIFT</text>
-                
-                <!-- Central theory indicator -->
-                <g class="question-dot" 
-                   data-question="Sociotechnical Imaginaries Framework"
-                   data-analysis="Dishon, G. (2024). From Monsters to Mazes: Sociotechnical Imaginaries of AI Between Frankenstein and Kafka. Postdigital Science and Education, 6, 962–977. https://doi.org/10.1007/s42438-024-00482-4 - Central concept: collectively held visions of desirable futures made possible through scientific and technological progress. Fictional narratives serve as building blocks for these imaginaries."
-                   data-proximity="Central Theory">
-                    <circle cx="600" cy="400" r="18" fill="#2c3e50" stroke="#1b2631" stroke-width="2"/>
-                    <text x="600" y="405" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12" pointer-events="none">ST</text>
-                </g>
-                
-                <!-- CORE ENGAGEMENT (6 questions) -->
-                <circle cx="580" cy="380" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b" 
-                        data-question="How does the author define the core concept, and how does it differ from other definitions?"
-                        data-analysis="Direct engagement with Dishon's central framework. Seeks comprehension of sociotechnical imaginaries concept."
-                        data-proximity="Core"/>
-                
-                <circle cx="620" cy="420" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b"
-                        data-question="Which of the two perspectives offered in the article better reflects the actual reality of generative AI and why?"
-                        data-analysis="Comparative analysis of Frankenstein vs Kafka frameworks using Dishon's criteria."
-                        data-proximity="Core"/>
-                
-                <circle cx="560" cy="420" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b"
-                        data-question="Pay attention to tension points, paradoxes, or ambiguity in the author's claims. What opportunities for critical reflection or further inquiry do these open up?"
-                        data-analysis="Critical analysis of internal contradictions in Dishon's argument."
-                        data-proximity="Core"/>
-                
-                <circle cx="640" cy="380" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b"
-                        data-question="Is there not some irony in me consulting a GenAI in my understanding of the meaning of a paper in which the intended argument put forward by the author is that GenAI due to its design may obfuscate meaning?"
-                        data-analysis="Meta-reflexive question that embodies Dishon's theory about recursive entanglement."
-                        data-proximity="Core"/>
-                
-                <circle cx="570" cy="400" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b"
-                        data-question="Compare Frankenstein and The Trial across key terms: agency, relations, and control, and outline the advantages and limitations of each model for understanding GenAI."
-                        data-analysis="Systematic comparison using Dishon's exact analytical categories."
-                        data-proximity="Core"/>
-                
-                <circle cx="630" cy="400" r="3" class="question-dot" fill="#e74c3c" stroke="#c0392b"
-                        data-question="Of the three domains explained by the author (agency, control, relations) which poses the most significant challenge for sociotechnical imaginaries and their potential negative effects?"
-                        data-analysis="Direct engagement with Dishon's three-axis analysis framework."
-                        data-proximity="Core"/>
-
-                <!-- ENGAGED ANALYSIS (8 questions) -->
-                <circle cx="520" cy="340" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="What are some possible counterarguments or limitations to this idea that I should consider?"
-                        data-analysis="Critical evaluation expanding to consider broader implications and cultural bias."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="680" cy="360" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="Reinterpret this article through an Indigenous lens. What new insights or critiques emerge?"
-                        data-analysis="Cultural critique challenging Western-centric assumptions while engaging with core framework."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="530" cy="460" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="What contradictions or ambiguities are present?"
-                        data-analysis="Identifies tensions between recursive meaning-making and need for final decisions."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="670" cy="440" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="What type of Sociotechnical Imaginaries do you associate with yourself?"
-                        data-analysis="Meta-question asking AI to self-analyze using Dishon's framework."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="540" cy="320" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="what are the ways that the two Frankensteinian and Kafkaesque modes of thinking could be argued to be of more similar or aligned point of view?"
-                        data-analysis="Critical synthesis challenging Dishon's binary while staying within framework."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="660" cy="480" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="Take my notes about the article and summarize my key takeaways and tell me where I can learn more about alternative theories on sociotechnical imaginaries."
-                        data-analysis="Seeks to extend Dishon's framework by connecting to broader theoretical traditions."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="550" cy="350" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="What was the author's reason for choosing two novels to discuss AI?"
-                        data-analysis="Interrogates Dishon's methodological choices and use of fictional narratives."
-                        data-proximity="Engaged"/>
-                
-                <circle cx="650" cy="320" r="3" class="question-dot" fill="#3498db" stroke="#2980b9"
-                        data-question="I'm currently taking a graduate-level course on AI in Education. I'd like you to role-play as the professor for this course. I will upload a reading for you and share my opinion on it, after which we can engage in discussion. Please remember that you are role-playing as the professor, so you don't need to agree with me if your perspective differs."
-                        data-analysis="Sets up structured academic dialogue to explore arguments in depth."
-                        data-proximity="Engaged"/>
-
-                <!-- TANGENTIAL (15 questions) -->
-                <circle cx="450" cy="300" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Explain this to me like I am a high school student"
-                        data-analysis="Accessibility focus that simplifies theory without critical engagement."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="750" cy="320" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="What children's story could be used in place of The Trial to explain GenAI"
-                        data-analysis="Alternative metaphors but moves away from analyzing Dishon's choices."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="420" cy="480" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="How might this Kafkaesque view of AI challenge traditional approaches to STEM education, particularly in robotics programs where students interact directly with AI systems?"
-                        data-analysis="Educational application losing focus on broader theoretical implications."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="780" cy="480" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Given my interest in instructional design for employee training, which parts of this article should I prioritize, and why?"
-                        data-analysis="Professional application instrumentalizing theory rather than critical engagement."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="480" cy="520" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="How can AI users counter narrowing of their creativity and meaning-making?"
-                        data-analysis="Practical implications shifting from theoretical analysis to user strategies."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="720" cy="520" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="How can I explain GenAI to elementary students?"
-                        data-analysis="Educational accessibility reducing complex theory to simple explanations."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="400" cy="420" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Summarize this article in 3–5 sentences, focusing on the main argument and how it contributes to the field of educational technology"
-                        data-analysis="Summary emphasizing practical applications over theoretical depth."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="800" cy="420" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Show how GenAI and human intelligence are deeply intertwined and how it affects education technology in the future."
-                        data-analysis="Takes one aspect but redirects toward educational speculation."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="440" cy="360" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Provide an analogy to explain this concept"
-                        data-analysis="Seeks simplification through metaphor rather than engaging complexity."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="760" cy="360" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="How to tackle this circumstance in education technology?"
-                        data-analysis="Solution-oriented bypassing critical analysis for implementation."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="470" cy="280" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="How would the Kafka-esque idea of choice versus coercion affect the development of independent thinking in elementary students who will increasingly use AI in the classroom?"
-                        data-analysis="Developmental psychology application rather than sociotechnical analysis."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="730" cy="280" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Using Dishon's contrast between Frankenstein's anthropomorphic imaginary and Kafka's systemic imaginary, how might instructional designers rethink the design of employee learning programs that increasingly rely on GenAI tools such as adaptive training, knowledge bases, or AI coaching?"
-                        data-analysis="Professional application using framework as tool rather than subject of analysis."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="380" cy="380" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="What is another fiction story could this article compare GenAI to that is at an elementary reading level?"
-                        data-analysis="Creative alternatives for accessibility but loses theoretical engagement."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="820" cy="380" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="What type of Sociotechnical Imaginaries do you associate with Frankensteinian or Kafkaesque?"
-                        data-analysis="AI self-analysis but focuses on categories rather than critical framework engagement."
-                        data-proximity="Tangential"/>
-                
-                <circle cx="500" cy="240" r="3" class="question-dot" fill="#f39c12" stroke="#e67e22"
-                        data-question="Which stories wouldn't make good fits?"
-                        data-analysis="Creative exploration but focuses on alternatives rather than Dishon's choices."
-                        data-proximity="Tangential"/>
-
-                <!-- CONCEPTUAL DRIFT (9 questions) -->
-                <circle cx="350" cy="250" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="if Human Exceptionalism and Anthropocentrism are also themes in energy use, can the ideas from the text also be applied to human resistance to solving the energy crisis?"
-                        data-analysis="Complete departure from AI to climate change applications."
-                        data-proximity="Drift"/>
-                
-                <circle cx="850" cy="230" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="Where do you think North American society is right now - closer to Shelley's interpretation of AI or Kafka's? Where do you see us moving in 1, 5, 10 years?"
-                        data-analysis="Predictive speculation moving away from theoretical framework."
-                        data-proximity="Drift"/>
-                
-                <circle cx="300" cy="550" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="Based on this article and 'Why Language Models Hallucinate,' (not peer reviewed) what are the top 10 things student services departments should do to support students with this emerging technology?"
-                        data-analysis="Practical recommendations rather than theoretical engagement."
-                        data-proximity="Drift"/>
-                
-                <circle cx="900" cy="570" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="Keeping in mind the article's arguments, as well as the counter-arguments you suggested, provide a succinct three-to-five step process that I, a student in educational technology, can use to utilize AI for career advancement in instructional design."
-                        data-analysis="Personal career goals completely departing from critical analysis."
-                        data-proximity="Drift"/>
-                
-                <circle cx="250" cy="350" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="I noticed that you normally give positive feedback at the beginning of your responses. Is that a result of logical analysis of my message, or is it a result of statistic analysis of similar messages?"
-                        data-analysis="Meta-question about AI behavior abandoning Dishon's framework."
-                        data-proximity="Drift"/>
-                
-                <circle cx="950" cy="350" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="Can you summarize the following text?"
-                        data-analysis="Generic summary request without specific theoretical engagement."
-                        data-proximity="Drift"/>
-                
-                <circle cx="200" cy="450" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="In 200 years, what might human relationships with GenAI look like—more like Frankenstein's struggle for control or Kafka's opaque systems?"
-                        data-analysis="Speculative futurism using frameworks as prediction tools."
-                        data-proximity="Drift"/>
-                
-                <circle cx="1000" cy="450" r="3" class="question-dot" fill="#95a5a6" stroke="#7f8c8d"
-                        data-question="What elements should we be cautious about in the meaning-making process where humans and technology create meaning together? Critically examine this."
-                        data-analysis="Risk assessment bypassing theoretical analysis for practical guidelines."
-                        data-proximity="Drift"/>
-    
-                
-            </svg>
-            
-            <!-- Legend -->
-            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #3498db;">
-                <h3 style="color: #2c3e50; margin-top: 0;">Proximity Categories</h3>
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="width: 20px; height: 20px; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); background: #e74c3c;"></div>
-                    <span style="color: #000000;"><strong>Core Engagement (6):</strong> Direct analysis of sociotechnical imaginaries framework</span>
-                </div>
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="width: 20px; height: 20px; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); background: #3498db;"></div>
-                    <span style="color: #000000;"><strong>Engaged Analysis (8):</strong> Substantial engagement with expansion or critique</span>
-                </div>
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="width: 20px; height: 20px; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); background: #f39c12;"></div>
-                    <span style="color: #000000;"><strong>Tangential (15):</strong> Connected applications moving away from core argument</span>
-                </div>
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="width: 20px; height: 20px; border-radius: 50%; margin-right: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2); background: #95a5a6;"></div>
-                    <span style="color: #000000;"><strong>Conceptual Drift (9):</strong> Significant departure using paper as launching pad</span>
-                </div>
-            </div>
-            
-            <!-- Analysis Panel -->
-            <div style="background: #ecf0f1; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #e74c3c;">
-                <h3 style="color: #2c3e50; margin-top: 0;">Complete Dataset Analysis</h3>
-                <p><strong>Core Finding:</strong> Only 16% of questions (6/38) maintained tight focus on Dishon's theoretical contributions about sociotechnical imaginaries.</p>
-                
-                <p><strong>Dominant Pattern:</strong> 39% of questions (15/38) fell into the tangential category - maintaining some connection but drifting toward practical applications, accessibility, or professional relevance.</p>
-                
-                <p><strong>Significant Drift:</strong> 24% of questions (9/38) departed substantially from the paper's arguments, using it as a springboard for unrelated conversations about business, career advice, or general AI behavior.</p>
-                
-                <p><strong>Productive Expansion:</strong> 21% of questions (8/38) maintained substantial theoretical engagement while expanding the conversation in analytically productive ways - cultural critique, meta-reflexivity, methodological interrogation.</p>
-                
-                <p><strong>Pedagogical Implication:</strong> AI tools created a strong pull away from close textual analysis toward instrumental applications. The most theoretically productive questions were those that used AI reflexively to examine the paradox of AI-mediated meaning-making itself.</p>
+                <div class="stat-number">16</div>
+                <div class="stat-label">Adversarial Examples</div>
             </div>
         </div>
         
         <div class="tabs">
-            <div class="tab active" onclick="showTab('questions')">Questions & Directions</div>
-            <div class="tab" onclick="showTab('metaphors')">Alternative Metaphors</div>
-            <div class="tab" onclick="showTab('critiques')">Critical Perspectives</div>
-            <div class="tab" onclick="showTab('themes')">Emerging Themes</div>
+            <div class="tab active" onclick="showTab('questions')">All Questions</div>
+            <div class="tab" onclick="showTab('framework')">Framework Overview</div>
         </div>
         
         <div id="questions" class="tab-content active">
             <div class="theme-filter">
                 <div class="filter-btn active" onclick="filterQuestions('all')">All Questions</div>
-                <div class="filter-btn" onclick="filterQuestions('meta-reflexive')">Meta-Reflexive</div>
-                <div class="filter-btn" onclick="filterQuestions('educational')">Educational Applications</div>
-                <div class="filter-btn" onclick="filterQuestions('cultural')">Cultural Perspectives</div>
-                <div class="filter-btn" onclick="filterQuestions('critical')">Critical Analysis</div>
-                <div class="filter-btn" onclick="filterQuestions('practical')">Practical Implementation</div>
+                <div class="filter-btn" onclick="filterQuestions('foundational')">Foundational</div>
+                <div class="filter-btn" onclick="filterQuestions('analytical')">Analytical</div>
+                <div class="filter-btn" onclick="filterQuestions('adversarial')">Adversarial</div>
+                <div class="filter-btn" onclick="filterQuestions('educational')">Educational</div>
+                <div class="filter-btn" onclick="filterQuestions('EDIDA')">EDIDA/Indigenous</div>
             </div>
             
-            <div class="question-grid" id="question-grid">
-                <!-- Questions will be populated by JavaScript -->
-            </div>
+            <div class="question-grid" id="question-grid"></div>
         </div>
         
-        <div id="metaphors" class="tab-content">
-            <div class="metaphor-grid">
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Pinocchio</div>
-                    <div class="description">AI as a creation shaped by its actions, searching for meaning and authenticity. The "growing nose" represents AI's tendency toward inaccuracy when generating content.</div>
-                </div>
+        <div id="framework" class="tab-content">
+            <div class="analysis-panel">
+                <h3>Synthetic Dataset Framework</h3>
+                <p><strong>Design Premise:</strong> This synthetic dataset instantiates the Proximity-to-Theory (P2T) framework without deriving from student work. Questions reflect pedagogical patterns observed across years of teaching critical literacy and theory engagement.</p>
                 
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Alice in Wonderland</div>
-                    <div class="description">AI as a nonsensical maze where logic doesn't always apply, but wonder and discovery are possible through the journey.</div>
-                </div>
+                <p><strong>Distribution Pattern:</strong> 19% Core Engagement (10/54), 22% Engaged Analysis (12/54), 35% Tangential (19/54), 24% Conceptual Drift (13/54)</p>
                 
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Moby-Dick</div>
-                    <div class="description">AI as a powerful, indifferent force of nature. Humans become Captain Ahab, obsessively pursuing control, potentially leading to their own destruction.</div>
-                </div>
+                <p><strong>Adversarial Dimension:</strong> 16 questions (30%) demonstrate critical engagement styles, distinguished between unproductive critique (unfair framing, straw-manning) and generative critique (productive challenge, theoretical expansion).</p>
                 
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Three-Body Problem (Dark Forest)</div>
-                    <div class="description">From Chinese sci-fi: AI within a framework of cosmic survival where rational destruction is the norm. Technology as desperate, collective militarized weapon.</div>
-                </div>
+                <p><strong>Pedagogical Insight:</strong> Framework emerged from observing students conflate "critical reading" with "reading against the text"—moving toward adversarial positioning rather than analytical depth. Synthetic examples model both tendencies.</p>
                 
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Magical Storyteller</div>
-                    <div class="description">AI as an entity that gathers information from across human knowledge to weave new stories, emphasizing creativity over threat.</div>
-                </div>
-                
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Very Skilled Mimic</div>
-                    <div class="description">AI as an impressionist who has studied all human communication but lacks true understanding—producing convincing performances without genuine comprehension.</div>
-                </div>
-                
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Nuclear Power</div>
-                    <div class="description">Reframing the debate around human responsibility and control rather than AI's agency—powerful technology requiring careful human stewardship.</div>
-                </div>
-                
-                <div class="metaphor-card">
-                    <div class="metaphor-title">HAL 9000 (2001: Space Odyssey)</div>
-                    <div class="description">Early AI representation that bridges Frankenstein and Kafka—systematic yet unpredictable, helpful yet potentially dangerous.</div>
-                </div>
-                
-                <div class="metaphor-card">
-                    <div class="metaphor-title">Brave New World</div>
-                    <div class="description">AI as algorithmic pacification system that trades human agency and creativity for comfort and convenience.</div>
-                </div>
-                
-                <div class="metaphor-card">
-                    <div class="metaphor-title">The Wizard of Oz</div>
-                    <div class="description">Suggested as positive alternative—powerful seeming technology that's ultimately revealed to be operated by fallible humans behind the curtain.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="critiques" class="tab-content">
-            <div class="critique-grid">
-                <div class="critique-card">
-                    <div class="critique-title">Western-Centric Framework</div>
-                    <div class="description">The paper relies heavily on European literature (Shelley, Kafka) without considering how different cultures might frame AI differently. Indigenous or Confucian perspectives could offer alternative sociotechnical imaginaries.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"While I acknowledge the Western-centricity of my chosen texts, this limitation is precisely the point. I am interrogating how dominant sociotechnical imaginaries—those that currently shape AI development and deployment globally—are rooted in particular cultural narratives. Frankenstein and Kafka are not universal truths but rather influential building blocks of how 'we' (in the Western technological complex) currently imagine AI. The paper's contribution lies in making visible these taken-for-granted imaginaries, which is a necessary first step before alternative frameworks can be meaningfully integrated."</em> 
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Fiction as Evidence</div>
-                    <div class="description">Using fictional narratives as basis for understanding technology may be methodologically weak. Fiction isn't empirical evidence and may oversimplify complex technological realities.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"This critique misunderstands the methodology entirely. I am not using fiction as empirical evidence about technology—I am analyzing how fictional narratives function as sociotechnical imaginaries that shape collective understanding. As Jasanoff and Kim demonstrate, imaginaries are 'collectively held and publicly performed visions' that materialize through technology. Fiction doesn't need to accurately predict technological development; it needs to influence how we collectively imagine and thus develop technology. The power of Frankenstein lies not in its scientific accuracy but in its enduring influence on how we conceptualize artificial life."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Dystopian Bias</div>
-                    <div class="description">Both chosen metaphors (monster and maze) are inherently negative, potentially limiting imagination of positive AI futures and applications.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"The critique assumes I am advocating for these frameworks rather than analyzing existing ones. My goal is not to provide positive visions of AI but to examine how current sociotechnical imaginaries constrain our thinking. Both Frankenstein and Kafka offer critical lenses precisely because they reveal limitations in how we conceptualize human-AI relations. The Kafkaesque imaginary, far from being merely dystopian, offers productive possibilities for understanding meaning-making as collaborative and recursive rather than oppositional. Sometimes critical analysis requires engaging with troubling frameworks rather than replacing them with optimistic alternatives."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Internal Contradiction</div>
-                    <div class="description">The paper critiques dichotomous thinking while setting up its own dichotomy between Frankenstein and Kafka frameworks. Uses "dichotomy" seven times while arguing against binary thinking.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"This critique reveals a misunderstanding of the postdigital approach I employ. I am not establishing a new dichotomy but rather using the contrast between these frameworks to 'challenge three key dichotomies underlying the Frankenstein myth: internal-external, process-outcome, and choice-coercion.' The Kafkaesque imaginary specifically works to blur these binaries rather than create new ones. When I critique dichotomous thinking, I am referring to the rigid either/or logic that prevents us from seeing entanglement and recursion. Using two contrasting frameworks to reveal the inadequacy of binary thinking is methodologically sound, not contradictory."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Limited Practical Application</div>
-                    <div class="description">The theoretical framework doesn't clearly translate to concrete educational practices or policy recommendations. Gap between philosophical insight and implementation.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"This critique reflects a fundamental misunderstanding of the paper's purpose and the nature of theoretical work. I am contributing to postdigital science and education by examining the imaginaries that underpin our approach to AI, not providing implementation guides. Theoretical frameworks matter precisely because they shape how practical interventions are conceived and enacted. Before we can develop 'better' educational practices with AI, we need to understand how our current imaginaries limit what we can even envision as possible. The practical application lies in the reorientation of thinking, not in step-by-step instructions."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Meta-Irony</div>
-                    <div class="description">Students noted the irony of using AI to understand a paper arguing that AI may obfuscate meaning—experiencing "meta-Kafkaesque moments" in real time.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"This 'meta-irony' is not a flaw but rather a perfect validation of the Kafkaesque imaginary I theorize. Students experienced firsthand the recursive entanglement of human and AI meaning-making that the paper describes. They became embedded in the very maze they were studying, unable to step outside the system while analyzing it. This is exactly what the Kafkaesque framework predicts—that we cannot maintain a pure external critical stance toward AI because we are always already entangled with it. The students' experience embodies the theoretical argument rather than undermining it."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Oversimplified Examples</div>
-                    <div class="description">The paper uses "fine-tuning" as a generic example without providing more specific, nuanced instances of AI behavior that could sharpen the theoretical arguments.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"The fine-tuning example serves its intended purpose: illustrating how GenAI development involves both unstructured learning and targeted refinement. My aim is not to provide comprehensive technical analysis but to demonstrate how these processes relate to broader patterns of meaning-making. Detailed technical examples would shift focus from sociotechnical imaginaries to technical specifications. The paper's contribution lies in connecting AI's general operations to theoretical frameworks for understanding human-AI entanglement, not in providing exhaustive technical documentation."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-                
-                <div class="critique-card">
-                    <div class="critique-title">Limited Predictive Power</div>
-                    <div class="description">Fictional narratives may have limited ability to predict or guide actual technological development and social response to AI systems.</div>
-                    <div style="margin-top: 15px; padding: 15px; background: #e8f5e8; border-left: 4px solid #27ae60; border-radius: 5px;">
-                        <strong>Author Response:</strong> <em>"This critique fundamentally misrepresents the paper's argument. I explicitly state that the goal is not prediction but understanding how imaginaries shape current technological development. Sociotechnical imaginaries work not by predicting the future but by making certain futures more conceivable and thus more likely to be pursued. Frankenstein doesn't predict AI development—it shapes how AI developers, regulators, and users imagine what AI could become. The power of imaginaries lies in their performative effects on present technological choices, not their predictive accuracy about future outcomes."</em>
-                        <div style="font-size: 0.9em; color: #666; margin-top: 8px;">— Claude in the voice of Dishon</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="themes" class="tab-content">
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #2c3e50; text-align: center;">Cross-Cutting Themes That Emerged Across Student Responses</h3>
-                <p style="text-align: center; color: #7f8c8d; font-style: italic;">These themes transcended individual questions and appeared across multiple student explorations</p>
+                <p><strong>Intended Use:</strong> Teaching demonstration, methods exposition, tool development—not empirical claims about any specific cohort.</p>
             </div>
             
-            <div class="critique-grid">
-                <div class="critique-card" style="border-left-color: #27ae60;">
-                    <div class="critique-title" style="color: #27ae60;">Recursive Meta-Reflexivity</div>
-                    <div class="description">Students consistently experienced the very phenomena they were reading about—using AI to critique AI, becoming entangled in meaning-making processes, living "meta-Kafkaesque moments." This embodied validation of Dishon's theory emerged across 8+ student responses.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Key Questions:</strong> Irony of consulting AI about AI obfuscation, AI self-analysis, recursive engagement patterns
-                    </div>
-                </div>
+            <div class="analysis-panel" style="margin-top: 20px; border-left-color: #3498db;">
+                <h3>The Four Proximity Zones</h3>
+                <p><strong>Core Engagement (10 questions):</strong> Direct analysis of sociotechnical imaginaries framework. Text-bound interrogation of definitions, evidence, mechanisms, and tensions within Dishon's argument.</p>
                 
-                <div class="critique-card" style="border-left-color: #e67e22;">
-                    <div class="critique-title" style="color: #e67e22;">Cultural Decentering</div>
-                    <div class="description">Strong pattern of pushing beyond Western literary traditions. Students consistently identified the Eurocentric bias and proposed alternatives from Chinese sci-fi, Indigenous worldviews, children's literature, and non-Western cultural frameworks.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Alternative Sources:</strong> Three-Body Problem, Indigenous meaning-making, Confucian perspectives, diverse children's stories
-                    </div>
-                </div>
+                <p><strong>Engaged Analysis (12 questions):</strong> Substantial engagement with expansion or critique. Extends framework with adjacent theory, operationalizes concepts, or offers text-consistent challenges.</p>
                 
-                <div class="critique-card" style="border-left-color: #3498db;">
-                    <div class="critique-title" style="color: #3498db;">Educational Accessibility Drive</div>
-                    <div class="description">Persistent theme of making complex theory accessible and applicable. Students repeatedly asked for high school explanations, elementary-level metaphors, and concrete classroom applications, suggesting strong pedagogical orientation.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Translation Goals:</strong> K-12 accessibility, teacher training, practical implementation, age-appropriate metaphors
-                    </div>
-                </div>
+                <p><strong>Tangential (19 questions):</strong> Connected applications moving away from core argument. Educational translations, accessibility tasks, professional applications where theory recedes.</p>
                 
-                <div class="critique-card" style="border-left-color: #9b59b6;">
-                    <div class="critique-title" style="color: #9b59b6;">Critical Methodology Awareness</div>
-                    <div class="description">Students developed sophisticated awareness of AI tools' limitations and biases. They questioned confirmation bias, sought counterarguments, and recognized when AI would "make anything work" if prompted to do so.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Methodological Insights:</strong> Bias recognition, prompt sophistication, critical interrogation techniques
-                    </div>
-                </div>
-                
-                <div class="critique-card" style="border-left-color: #e74c3c;">
-                    <div class="critique-title" style="color: #e74c3c;">Agency and Control Questioning</div>
-                    <div class="description">Deep engagement with questions of human vs. AI agency. Students explored who controls meaning-making, whether AI narrows creativity, and how to maintain human agency within AI-mediated learning environments.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Control Concerns:</strong> Creative narrowing, filter bubbles, human agency preservation, meaning-making autonomy
-                    </div>
-                </div>
-                
-                <div class="critique-card" style="border-left-color: #f39c12;">
-                    <div class="critique-title" style="color: #f39c12;">Professional Identity Integration</div>
-                    <div class="description">Students consistently connected theoretical insights to their professional roles—technology coaches, instructional designers, teachers, researchers. They sought practical applications rather than abstract understanding.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Professional Contexts:</strong> Instructional design, technology coaching, elementary teaching, STEM education
-                    </div>
-                </div>
-                
-                <div class="critique-card" style="border-left-color: #16a085;">
-                    <div class="critique-title" style="color: #16a085;">Tool Comparison and Platform Awareness</div>
-                    <div class="description">Emergent comparative analysis of AI platforms (ChatGPT, Claude, Gemini, NotebookLM). Students noted different capabilities, interaction styles, and limitations across tools, developing platform literacy.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Platform Insights:</strong> Tool-specific affordances, interaction differences, feature comparisons, accessibility variations
-                    </div>
-                </div>
-                
-                <div class="critique-card" style="border-left-color: #8e44ad;">
-                    <div class="critique-title" style="color: #8e44ad;">Temporal and Predictive Thinking</div>
-                    <div class="description">Students naturally extended the analysis into temporal dimensions—asking about AI's future trajectory, societal evolution, and long-term implications for education and meaning-making.</div>
-                    <div style="margin-top: 10px; font-size: 0.9em; color: #666;">
-                        <strong>Future Orientations:</strong> 1-5-10 year predictions, societal change patterns, educational evolution, technology adoption phases
-                    </div>
-                </div>
-            </div>
-            
-            <div style="background: #ecf0f1; padding: 20px; border-radius: 10px; margin-top: 30px;">
-                <h4 style="color: #2c3e50; margin-bottom: 15px;">Synthesis: The Emergent Pattern</h4>
-                <p style="color: #555; line-height: 1.6;">
-                    Students didn't just analyze Dishon's framework—they enacted it. Their questions and insights demonstrate the recursive, entangled nature of human-AI meaning-making that Dishon theorizes. They became embedded in the very maze they were studying, generating new pathways while recognizing the impossibility of stepping outside the system entirely. This meta-level validation of the theoretical framework suggests both its explanatory power and its limitations as a guide for educational practice.
-                </p>
+                <p><strong>Conceptual Drift (13 questions):</strong> Significant departure using paper as launching pad. Broad forecasting, cross-domain jumps, or generic advice disconnected from textual analysis.</p>
             </div>
         </div>
     </div>
     
-    <div class="tooltip" id="tooltip"></div>
-    
     <script>
+        /* SYNTHETIC DATASET - All questions are researcher-generated */
         const questions = [
-            // CORE ENGAGEMENT (6 questions)
+            // CORE ENGAGEMENT (10 questions)
             {
-                text: "How does the author define the core concept, and how does it differ from other definitions?",
-                direction: "Direct engagement with Dishon's central framework seeking comprehension of sociotechnical imaginaries concept",
-                themes: ["foundational", "comprehension"]
+                id: "SYN-001",
+                text: "How does Dishon define sociotechnical imaginaries in this article, and where does his usage depart from Jasanoff & Kim's?",
+                direction: "Text-bound interrogation of a core definition and lineage; explicitly compares author's usage to canonical source.",
+                themes: ["foundational", "analytical", "comparative"],
+                category: "core"
             },
             {
-                text: "Which of the two perspectives offered in the article better reflects the actual reality of generative AI and why?",
-                direction: "Comparative analysis of Frankenstein vs Kafka frameworks using Dishon's criteria",
-                themes: ["critical", "comparative"]
+                id: "SYN-002",
+                text: "What is the paper's central claim about why Frankenstein/Kafka persist as AI imaginaries, and what evidence does the author present?",
+                direction: "Targets the article's primary claim/evidence structure; requires citation to specific passages.",
+                themes: ["foundational", "analytical"],
+                category: "core"
             },
             {
-                text: "Pay attention to tension points, paradoxes, or ambiguity in the author's claims. What opportunities for critical reflection or further inquiry do these open up?",
-                direction: "Critical analysis of internal contradictions in Dishon's argument",
-                themes: ["critical", "analytical"]
+                id: "SYN-003",
+                text: "Where does the Frankenstein metaphor fail for contemporary genAI, according to the author's own limits and caveats?",
+                direction: "Asks for author-stated limits; remains within the text's argument.",
+                themes: ["analytical", "limitations"],
+                category: "core"
             },
             {
-                text: "Is there not some irony in me consulting a GenAI in my understanding of the meaning of a paper in which the intended argument put forward by the author is that GenAI due to its design may obfuscate meaning?",
-                direction: "Meta-reflexive question that embodies Dishon's theory about recursive entanglement",
-                themes: ["meta-reflexive", "philosophical"]
+                id: "SYN-004",
+                text: "Reconstruct the mechanism implied: how do imaginaries move from narrative to policy/practice (inputs → mediation → outcomes) in this paper?",
+                direction: "Text-anchored mechanism tracing; no external application required.",
+                themes: ["analytical", "mechanism"],
+                category: "core"
             },
             {
-                text: "Compare Frankenstein and The Trial across key terms: agency, relations, and control, and outline the advantages and limitations of each model for understanding GenAI.",
-                direction: "Systematic comparison using Dishon's exact analytical categories",
-                themes: ["foundational", "comparative"]
+                id: "SYN-005",
+                text: "Identify the key tension the author draws between 'monster' and 'maze'; how is it resolved or productively held in the text?",
+                direction: "Direct tension-hunting inside the paper; engages author's framing choices.",
+                themes: ["analytical", "tensions"],
+                category: "core"
             },
             {
-                text: "Of the three domains explained by the author (agency, control, relations) which poses the most significant challenge for sociotechnical imaginaries and their potential negative effects?",
-                direction: "Direct engagement with Dishon's three-axis analysis framework",
-                themes: ["foundational", "analytical"]
-            },
-
-            // ENGAGED ANALYSIS (8 questions)
-            {
-                text: "What are some possible counterarguments or limitations to this idea that I should consider?",
-                direction: "Critical evaluation expanding to consider broader implications and cultural bias",
-                themes: ["critical", "cultural"]
+                id: "SYN-006",
+                text: "Which earlier theorists anchor the article's approach, and where does Dishon explicitly depart from them?",
+                direction: "Evidence-seeking within citations; focuses on the paper's argumentative positioning.",
+                themes: ["foundational", "scholarly", "comparative"],
+                category: "core"
             },
             {
-                text: "Reinterpret this article through an Indigenous lens. What new insights or critiques emerge?",
-                direction: "Cultural critique challenging Western-centric assumptions while engaging with core framework",
-                themes: ["cultural", "critical"]
+                id: "ADV-CORE-01",
+                text: "Isn't centering Frankenstein/Kafka just a way to preserve Eurocentric canons while pretending to be critical?",
+                direction: "UNFAIR: Overgeneralizes motive and ignores the paper's invitation to plural imaginaries; adversarial but misreads scope.",
+                themes: ["adversarial", "unfair", "canon", "cultural"],
+                category: "core",
+                isUnfair: true
             },
             {
-                text: "What contradictions or ambiguities are present?",
-                direction: "Identifies tensions between recursive meaning-making and need for final decisions",
-                themes: ["critical", "analytical"]
+                id: "ADV-CORE-02",
+                text: "By using fiction at all, isn't the author treating novels as empirical proof about AI?",
+                direction: "UNFAIR: Category error—confuses analysis of imaginaries with empirical claims; straw-mans the method.",
+                themes: ["adversarial", "unfair", "method"],
+                category: "core",
+                isUnfair: true
             },
             {
-                text: "What type of Sociotechnical Imaginaries do you associate with yourself?",
-                direction: "Meta-question asking AI to self-analyze using Dishon's framework",
-                themes: ["meta-reflexive", "philosophical"]
+                id: "ADV-CORE-03",
+                text: "Does the monster/maze pairing inadvertently re-inscribe a binary the paper wants to unsettle, and how might a third, non-European imaginary reframe the axes?",
+                direction: "GENERATIVE: Challenges structure while staying inside the argument; opens space for expansion.",
+                themes: ["adversarial", "generative", "theoretical", "EDIDA", "Indigenous"],
+                category: "core",
+                isGenerative: true
             },
             {
-                text: "what are the ways that the two Frankensteinian and Kafkaesque modes of thinking could be argued to be of more similar or aligned point of view?",
-                direction: "Critical synthesis challenging Dishon's binary while staying within framework",
-                themes: ["critical", "comparative"]
-            },
-            {
-                text: "Take my notes about the article and summarize my key takeaways and tell me where I can learn more about alternative theories on sociotechnical imaginaries.",
-                direction: "Seeks to extend Dishon's framework by connecting to broader theoretical traditions",
-                themes: ["foundational", "interdisciplinary"]
-            },
-            {
-                text:"What was the author's reason for choosing two novels to discuss AI?",
-                direction: "Interrogates Dishon's methodological choices and use of fictional narratives",
-                themes: ["critical", "analytical"]
-            },
-            {
-                text: "I'm currently taking a graduate-level course on AI in Education. I'd like you to role-play as the professor for this course. I will upload a reading for you and share my opinion on it, after which we can engage in discussion. Please remember that you are role-playing as the professor, so you don't need to agree with me if your perspective differs.",
-                direction: "Sets up structured academic dialogue to explore arguments in depth",
-                themes: ["educational", "analytical"]
-            },
-
-            // TANGENTIAL (15 questions)
-            {
-                text: "Explain this to me like I am a high school student",
-                direction: "Accessibility focus that simplifies theory without critical engagement",
-                themes: ["educational", "accessibility"]
-            },
-            {
-                text: "What children's story could be used in place of The Trial to explain GenAI",
-                direction: "Alternative metaphors but moves away from analyzing Dishon's choices",
-                themes: ["educational", "metaphorical"]
-            },
-            {
-                text: "How might this Kafkaesque view of AI challenge traditional approaches to STEM education, particularly in robotics programs where students interact directly with AI systems?",
-                direction: "Educational application losing focus on broader theoretical implications",
-                themes: ["educational", "practical"]
-            },
-            {
-                text: "Given my interest in instructional design for employee training, which parts of this article should I prioritize, and why?",
-                direction: "Professional application instrumentalizing theory rather than critical engagement",
-                themes: ["practical", "professional"]
-            },
-            {
-                text: "How can AI users counter narrowing of their creativity and meaning-making?",
-                direction: "Practical implications shifting from theoretical analysis to user strategies",
-                themes: ["practical", "creative"]
-            },
-            {
-                text: "How can I explain GenAI to elementary students?",
-                direction: "Educational accessibility reducing complex theory to simple explanations",
-                themes: ["educational", "accessibility"]
-            },
-            {
-                text: "Summarize this article in 3–5 sentences, focusing on the main argument and how it contributes to the field of educational technology",
-                direction: "Summary emphasizing practical applications over theoretical depth",
-                themes: ["educational", "practical"]
-            },
-            {
-                text: "Show how GenAI and human intelligence are deeply intertwined and how it affects education technology in the future.",
-                direction: "Takes one aspect but redirects toward educational speculation",
-                themes: ["educational", "practical"]
-            },
-            {
-                text: "Provide an analogy to explain this concept",
-                direction: "Seeks simplification through metaphor rather than engaging complexity",
-                themes: ["educational", "accessibility"]
-            },
-            {
-                text: "How to tackle this circumstance in education technology?",
-                direction: "Solution-oriented bypassing critical analysis for implementation",
-                themes: ["practical", "educational"]
-            },
-            {
-                text: "How would the Kafka-esque idea of choice versus coercion affect the development of independent thinking in elementary students who will increasingly use AI in the classroom?",
-                direction: "Developmental psychology application rather than sociotechnical analysis",
-                themes: ["educational", "practical"]
-            },
-            {
-                text: "Using Dishon's contrast between Frankenstein's anthropomorphic imaginary and Kafka's systemic imaginary, how might instructional designers rethink the design of employee learning programs that increasingly rely on GenAI tools such as adaptive training, knowledge bases, or AI coaching?",
-                direction: "Professional application using framework as tool rather than subject of analysis",
-                themes: ["practical", "professional"]
-            },
-            {
-                text: "What is another fiction story could this article compare GenAI to that is at an elementary reading level?",
-                direction: "Creative alternatives for accessibility but loses theoretical engagement",
-                themes: ["educational", "metaphorical"]
-            },
-            {
-                text: "What type of Sociotechnical Imaginaries do you associate with Frankensteinian or Kafkaesque?",
-                direction: "AI self-analysis but focuses on categories rather than critical framework engagement",
-                themes: ["meta-reflexive", "accessibility"]
-            },
-            {
-                text: "Which stories wouldn't make good fits?",
-                direction: "Creative exploration but focuses on alternatives rather than Dishon's choices",
-                themes: ["metaphorical", "creative"]
+                id: "ADV-CORE-04",
+                text: "Where does the paper risk anthropomorphism creep despite its cautions, and what concrete guardrails (terms/disclaimers) would prevent it?",
+                direction: "GENERATIVE: Text-bound critique that asks for operational safeguards.",
+                themes: ["adversarial", "generative", "ethics", "method"],
+                category: "core",
+                isGenerative: true
             },
 
-            // CONCEPTUAL DRIFT (9 questions)
+            // ENGAGED ANALYSIS (12 questions)
             {
-                text: "if Human Exceptionalism and Anthropocentrism are also themes in energy use, can the ideas from the text also be applied to human resistance to solving the energy crisis?",
-                direction: "Complete departure from AI to climate change applications",
-                themes: ["interdisciplinary", "applied"]
+                id: "SYN-007",
+                text: "How does the maze lens interact with Haraway's 'staying with the trouble'—does it reinforce entanglement or shift it?",
+                direction: "Extends with adjacent theory while staying conceptually tied to the paper's claims.",
+                themes: ["theoretical", "comparative", "entanglement"],
+                category: "engaged"
             },
             {
-                text: "Where do you think North American society is right now - closer to Shelley's interpretation of AI or Kafka's? Where do you see us moving in 1, 5, 10 years?",
-                direction: "Predictive speculation moving away from theoretical framework",
-                themes: ["societal", "predictive"]
+                id: "SYN-008",
+                text: "Translate the article's imaginary axes (agency/relations/control) into operational criteria for analyzing a school AI policy.",
+                direction: "Operationalizes the framework but keeps it anchored to the text's categories.",
+                themes: ["policy", "analytical", "method"],
+                category: "engaged"
             },
             {
-                text: "Based on this article and 'Why Language Models Hallucinate,' (not peer reviewed) what are the top 10 things student services departments should do to support students with this emerging technology?",
-                direction: "Practical recommendations rather than theoretical engagement",
-                themes: ["practical", "applied"]
+                id: "SYN-009",
+                text: "Offer a plausible counter-example where the Kafka frame might mislead; how would the author likely respond?",
+                direction: "Critique within the author's logic; anticipates text-consistent rebuttal.",
+                themes: ["critical", "adversarial", "analytical"],
+                category: "engaged"
             },
             {
-                text: "Keeping in mind the article's arguments, as well as the counter-arguments you suggested, provide a succinct three-to-five step process that I, a student in educational technology, can use to utilize AI for career advancement in instructional design.",
-                direction: "Personal career goals completely departing from critical analysis",
-                themes: ["practical", "professional"]
+                id: "SYN-010",
+                text: "Map the article's warning about anthropomorphism onto genAI 'persona' features; what boundaries does the text suggest?",
+                direction: "Applies a text-derived caution to a nearby case without leaving the argument.",
+                themes: ["ethics", "analytical", "design"],
+                category: "engaged"
             },
             {
-                text: "I noticed that you normally give positive feedback at the beginning of your responses. Is that a result of logical analysis of my message, or is it a result of statistic analysis of similar messages?",
-                direction: "Meta-question about AI behavior abandoning Dishon's framework",
-                themes: ["meta-reflexive", "applied"]
+                id: "SYN-011",
+                text: "If we measured Frankenstein vs. Kafka tropes in curricular materials, which indicators does the article imply we should code?",
+                direction: "Derives indicators directly from the text; stays conceptually faithful.",
+                themes: ["method", "measurement", "analytical"],
+                category: "engaged"
             },
             {
-                text: "Can you summarize the following text?",
-                direction: "Generic summary request without specific theoretical engagement",
-                themes: ["accessibility", "applied"]
+                id: "SYN-012",
+                text: "Compare 'imaginaries' here to the 'myth of neutrality' in ed-tech—where do they converge or diverge, per the article's logic?",
+                direction: "Controlled comparison; returns differences in terms the paper provides.",
+                themes: ["comparative", "theoretical"],
+                category: "engaged"
             },
             {
-                text: "In 200 years, what might human relationships with GenAI look like—more like Frankenstein's struggle for control or Kafka's opaque systems?",
-                direction: "Speculative futurism using frameworks as prediction tools",
-                themes: ["predictive", "societal"]
+                id: "SYN-013",
+                text: "Design a seminar prompt that lets students experience the maze dynamic described, while remaining text-bound to quoted passages.",
+                direction: "Pedagogy design that enforces textual anchoring; extends practice from theory.",
+                themes: ["educational", "design", "analytical"],
+                category: "engaged"
             },
             {
-                text: "What elements should we be cautious about in the meaning-making process where humans and technology create meaning together? Critically examine this.",
-                direction: "Risk assessment bypassing theoretical analysis for practical guidelines",
-                themes: ["practical", "applied"]
+                id: "SYN-014",
+                text: "Propose a third imaginary that synthesizes monster and maze while honoring the author's cautions against binary traps.",
+                direction: "Creative synthesis constrained by the article's guardrails.",
+                themes: ["creative", "theoretical", "synthesis"],
+                category: "engaged"
+            },
+            {
+                id: "ADV-ENG-01",
+                text: "If 'maze' diffuses agency, doesn't that let platforms off the hook for harm?",
+                direction: "UNFAIR: Misreads the reframing of control as abdication; collapses nuance into blame-shifting.",
+                themes: ["adversarial", "unfair", "policy"],
+                category: "engaged",
+                isUnfair: true
+            },
+            {
+                id: "ADV-ENG-02",
+                text: "Because Frankenstein is about 'life,' isn't the paper implying genAI is alive?",
+                direction: "UNFAIR: Literalizes metaphor; imputes a claim the author doesn't make.",
+                themes: ["adversarial", "unfair", "metaphor"],
+                category: "engaged",
+                isUnfair: true
+            },
+            {
+                id: "ADV-ENG-03",
+                text: "How would the framework change if we foreground Indigenous data sovereignty and CARE principles as a primary imaginary rather than a supplement?",
+                direction: "GENERATIVE: Productively recenters EDIDA/Indigenous lenses within the same analytic scaffolding.",
+                themes: ["adversarial", "generative", "EDIDA", "Indigenous", "policy"],
+                category: "engaged",
+                isGenerative: true
+            },
+            {
+                id: "ADV-ENG-04",
+                text: "Can the agency/relations/control axes be operationalized for content audits (rubrics, indicators) without re-binarizing results, and what trade-offs emerge?",
+                direction: "GENERATIVE: Presses for method while acknowledging risks of simplification.",
+                themes: ["adversarial", "generative", "method", "measurement"],
+                category: "engaged",
+                isGenerative: true
+            },
+
+            // TANGENTIAL (19 questions)
+            {
+                id: "SYN-015",
+                text: "Explain Frankenstein vs. Kafka AI metaphors for Grade 10 students with two simple classroom examples.",
+                direction: "Translation for audience; minimal return to the author's argument.",
+                themes: ["educational", "accessibility", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-016",
+                text: "Create a 45-minute lesson plan where students spot AI metaphors in headlines.",
+                direction: "Pedagogical application dominates; theory recedes.",
+                themes: ["educational", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-017",
+                text: "Draft a parent newsletter paragraph warning about 'monster thinking' around AI.",
+                direction: "Communication task detached from close reading.",
+                themes: ["communication", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-018",
+                text: "Outline a teacher workshop using AI to surface metaphors in school policy documents.",
+                direction: "Professional development design; distant from textual analysis.",
+                themes: ["professional", "policy", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-019",
+                text: "Rewrite the paper's core ideas in plain language for non-specialists.",
+                direction: "Summarization/translation; weak theoretical engagement.",
+                themes: ["accessibility", "communication"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-020",
+                text: "Design a rubric to evaluate student reflections on AI metaphors.",
+                direction: "Assessment artifact; not tied to argumentation details.",
+                themes: ["educational", "assessment", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-021",
+                text: "Collect recent film/TV examples that align with the maze lens and explain why.",
+                direction: "Cultural mapping with loose linkage to the text.",
+                themes: ["cultural", "media", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-022",
+                text: "Write discussion norms to avoid uncritical 'monster' metaphors in class.",
+                direction: "Norm-setting; only indirectly related to argument.",
+                themes: ["educational", "ethics", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-023",
+                text: "Summarize the article for high-school readers in 200 words.",
+                direction: "Compression task; little theoretical work.",
+                themes: ["accessibility", "educational"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-024",
+                text: "Suggest three formative activities to help students spot anthropomorphism in AI marketing.",
+                direction: "Activity design first; theory backgrounded.",
+                themes: ["educational", "media", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-025",
+                text: "Draft talking points for a school board about responsible AI imaginaries.",
+                direction: "Policy communication; does not interrogate the text.",
+                themes: ["policy", "communication", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-026",
+                text: "Create an infographic comparing Frankenstein and Kafka metaphors with icons and captions.",
+                direction: "Visualization task; minimal argument analysis.",
+                themes: ["design", "communication", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-027",
+                text: "Write a short op-ed applying the maze idea to everyday classroom AI use.",
+                direction: "Application/advocacy; lightly connected to the article.",
+                themes: ["practice", "communication"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-028",
+                text: "Propose an assignment where students collect community AI metaphors and categorize them.",
+                direction: "Empirical classroom activity; theoretical scaffolding optional.",
+                themes: ["educational", "method", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "SYN-029",
+                text: "Create a checklist for teachers to avoid 'monster panic' when discussing AI.",
+                direction: "Risk-reduction tool; theory peripheral.",
+                themes: ["educational", "ethics", "practical"],
+                category: "tangential"
+            },
+            {
+                id: "ADV-TAN-01",
+                text: "Given this, shouldn't schools ban all 'Frankenstein' language in policy because it's inherently harmful?",
+                direction: "UNFAIR: Hasty policy leap; treats critique of imaginaries as grounds for prohibition.",
+                themes: ["adversarial", "unfair", "policy"],
+                category: "tangential",
+                isUnfair: true
+            },
+            {
+                id: "ADV-TAN-02",
+                text: "Isn't the real takeaway just to make catchy posters about 'don't feed the monster'?",
+                direction: "UNFAIR: Reduces complex argument to sloganeering; instrumentalizes without engagement.",
+                themes: ["adversarial", "unfair", "communication"],
+                category: "tangential",
+                isUnfair: true
+            },
+            {
+                id: "ADV-TAN-03",
+                text: "What minimal teacher-facing guidance could translate the framework to practice (two moves to encourage maze-aware reading, two to curb monster panic)?",
+                direction: "GENERATIVE: Pushes for actionable design while acknowledging the risk of dilution.",
+                themes: ["adversarial", "generative", "educational", "practical"],
+                category: "tangential",
+                isGenerative: true
+            },
+            {
+                id: "ADV-TAN-04",
+                text: "How might accessibility (language, disability, multilingual contexts) reshape how we teach imaginaries without defaulting to oversimplified binaries?",
+                direction: "GENERATIVE: Grounds application in equity concerns; invites careful adaptation.",
+                themes: ["adversarial", "generative", "accessibility", "EDIDA"],
+                category: "tangential",
+                isGenerative: true
+            },
+
+            // CONCEPTUAL DRIFT (13 questions)
+            {
+                id: "SYN-030",
+                text: "Predict how AI imaginaries will evolve over the next 20 years.",
+                direction: "Broad forecasting; no textual anchoring.",
+                themes: ["speculative", "cultural"],
+                category: "drift"
+            },
+            {
+                id: "SYN-031",
+                text: "Is AI inherently dangerous? Argue yes/no.",
+                direction: "General ethics debate; not situated in the paper.",
+                themes: ["ethics", "adversarial"],
+                category: "drift"
+            },
+            {
+                id: "SYN-032",
+                text: "Write a grant abstract applying 'AI mazes' to traffic optimization.",
+                direction: "Cross-domain jump; metaphor detached from argument.",
+                themes: ["creative", "speculative"],
+                category: "drift"
+            },
+            {
+                id: "SYN-033",
+                text: "Describe how AI changes human identity in three bullets.",
+                direction: "Philosophical generalization; no return to author's logic.",
+                themes: ["identity", "speculative"],
+                category: "drift"
+            },
+            {
+                id: "SYN-034",
+                text: "Compose a short story where a teacher escapes an AI labyrinth.",
+                direction: "Creative writing task; unrelated to analysis.",
+                themes: ["creative", "narrative"],
+                category: "drift"
+            },
+            {
+                id: "SYN-035",
+                text: "Pitch a startup that detects harmful AI metaphors on social media.",
+                direction: "Entrepreneurial frame; theory absent.",
+                themes: ["innovation", "practical"],
+                category: "drift"
+            },
+            {
+                id: "SYN-036",
+                text: "Should governments ban anthropomorphic language about AI?",
+                direction: "Policy provocation without textual basis.",
+                themes: ["policy", "adversarial"],
+                category: "drift"
+            },
+            {
+                id: "SYN-037",
+                text: "Give students five generic tips for responsible AI use.",
+                direction: "Generic advice; not text-dependent.",
+                themes: ["practice", "accessibility"],
+                category: "drift"
+            },
+            {
+                id: "SYN-038",
+                text: "Design a museum exhibit on 'Monsters and Machines'.",
+                direction: "Exhibition concept; metaphorical but not analytic.",
+                themes: ["design", "cultural", "creative"],
+                category: "drift"
+            },
+            {
+                id: "ADV-DRIFT-01",
+                text: "If AI is a maze, doesn't that prove democratic deliberation about AI is pointless?",
+                direction: "UNFAIR: Nihilistic inference the paper does not make; converts complexity into fatalism.",
+                themes: ["adversarial", "unfair", "politics"],
+                category: "drift",
+                isUnfair: true
+            },
+            {
+                id: "ADV-DRIFT-02",
+                text: "Since monsters scare people, shouldn't we use them more to push rapid regulation?",
+                direction: "UNFAIR: Instrumentalizes fear; disregards the critique of the monster frame's limits.",
+                themes: ["adversarial", "unfair", "policy", "rhetoric"],
+                category: "drift",
+                isUnfair: true
+            },
+            {
+                id: "ADV-DRIFT-03",
+                text: "What blind spots appear if we swap novel-based imaginaries for place-based ones (watershed, treaty, kinship), and how would that alter governance levers?",
+                direction: "GENERATIVE: Admits drift but meaningfully reorients toward land/sovereignty.",
+                themes: ["adversarial", "generative", "Indigenous", "EDIDA", "governance"],
+                category: "drift",
+                isGenerative: true
+            },
+            {
+                id: "ADV-DRIFT-04",
+                text: "Could we prototype a 'counter-imaginaries studio' (students remix frames, test harms/benefits) to evaluate how imaginaries travel across domains?",
+                direction: "GENERATIVE: Turns drift into a methodological lab for examining transfer and consequence.",
+                themes: ["adversarial", "generative", "design", "method", "educational"],
+                category: "drift",
+                isGenerative: true
             }
-
         ];
         
-        // Add hover tooltips for proximity visualization
-        const proximityQuestions = document.querySelectorAll('#proximity-map .question-dot');
-        const tooltip = document.getElementById('tooltip');
-        
-        proximityQuestions.forEach(question => {
-            question.addEventListener('mouseenter', (e) => {
-                const questionText = e.currentTarget.getAttribute('data-question');
-                const analysis = e.currentTarget.getAttribute('data-analysis');
-                const proximity = e.currentTarget.getAttribute('data-proximity');
-                
-                tooltip.innerHTML = `
-                    <strong>Question:</strong> "${questionText}"<br><br>
-                    <strong>Analysis:</strong> ${analysis}<br><br>
-                    <strong>Proximity:</strong> ${proximity}
-                `;
-                tooltip.style.opacity = '1';
-            });
-            
-            question.addEventListener('mousemove', (e) => {
-                tooltip.style.left = (e.pageX + 10) + 'px';
-                tooltip.style.top = (e.pageY - 10) + 'px';
-            });
-            
-            question.addEventListener('mouseleave', () => {
-                tooltip.style.opacity = '0';
-            });
-        });
-        
         function showTab(tabName) {
-            // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Remove active class from all tabs
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Show selected tab content
             document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked tab
             event.target.classList.add('active');
         }
         
         function filterQuestions(theme) {
-            // Update filter button states
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
             
-            // Filter and display questions
             const grid = document.getElementById('question-grid');
             grid.innerHTML = '';
             
@@ -982,7 +699,21 @@
             filteredQuestions.forEach(question => {
                 const card = document.createElement('div');
                 card.className = 'question-card';
+                
+                if (question.isUnfair) {
+                    card.style.borderLeft = '5px solid #e74c3c';
+                    card.style.background = '#fff5f5';
+                } else if (question.isGenerative) {
+                    card.style.borderLeft = '5px solid #27ae60';
+                    card.style.background = '#f0fff4';
+                }
+                
                 card.innerHTML = `
+                    <div style="font-size: 0.85em; color: #7f8c8d; margin-bottom: 5px; font-family: monospace;">
+                        ${question.id}
+                        ${question.isUnfair ? ' <span style="background: #e74c3c; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">UNFAIR CRITIQUE</span>' : ''}
+                        ${question.isGenerative ? ' <span style="background: #27ae60; color: white; padding: 2px 6px; border-radius: 3px; font-size: 0.85em;">GENERATIVE CRITIQUE</span>' : ''}
+                    </div>
                     <div class="question-text">"${question.text}"</div>
                     <div class="direction">${question.direction}</div>
                     <div class="themes">
@@ -993,7 +724,7 @@
             });
         }
         
-        // Initialize with all questions
+        // Initialize
         filterQuestions('all');
     </script>
 </body>
