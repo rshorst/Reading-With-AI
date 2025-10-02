@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Reading TRIAL RUN - P2T Framework</title>
+    <title>Proximity to Core Argument - P2T Framework</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -26,8 +26,15 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.2em;
         }
         
         .ethics-box {
@@ -53,7 +60,7 @@
             background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-align: center;
         }
         
@@ -74,9 +81,71 @@
             font-size: 0.9em;
         }
         
+        .visualization-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .question-dot {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .question-dot:hover {
+            stroke-width: 3;
+            r: 6;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            max-width: 400px;
+            z-index: 1000;
+            line-height: 1.4;
+        }
+        
+        .legend {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .legend h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .legend-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
         .tabs {
             display: flex;
             margin-bottom: 30px;
+            margin-top: 30px;
             border-bottom: 3px solid #e74c3c;
         }
         
@@ -151,14 +220,14 @@
         .question-text {
             font-style: italic;
             color: #2c3e50;
-            font-size: 1.1em;
+            font-size: 1.05em;
             margin-bottom: 10px;
         }
         
         .direction {
             color: #7f8c8d;
             margin-bottom: 10px;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
         
         .themes {
@@ -174,29 +243,12 @@
             font-size: 0.8em;
             color: #2c3e50;
         }
-        
-        .analysis-panel {
-            background: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-left: 5px solid #e74c3c;
-        }
-        
-        .analysis-panel h3 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-        
-        .analysis-panel p {
-            color: #555;
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>AI Reading Analysis: Proximity-to-Theory Framework</h1>
+        <h1>Proximity to Core Argument</h1>
+        <div class="subtitle">Mapping Questions by Distance from Dishon's Theoretical Framework</div>
         
         <div class="ethics-box">
             <h3>📋 Ethics & Data Disclosure</h3>
@@ -211,17 +263,130 @@
                 <div class="stat-label">Synthetic Questions</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Proximity Zones</div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">Core Engagement</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">16</div>
-                <div class="stat-label">Adversarial Examples</div>
+                <div class="stat-number">12</div>
+                <div class="stat-label">Engaged Analysis</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">32</div>
+                <div class="stat-label">Tangential/Drift</div>
+            </div>
+        </div>
+        
+        <div class="visualization-container">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Visual Map: Question Proximity to Core Argument</h2>
+            <svg id="proximity-map" width="100%" height="700" viewBox="0 0 1200 700">
+                <!-- Concentric circles representing proximity zones -->
+                <circle cx="600" cy="350" r="100" fill="rgba(231, 76, 60, 0.1)" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+                <text x="600" y="260" text-anchor="middle" font-weight="bold" font-size="14px" fill="#e74c3c">CORE ENGAGEMENT</text>
+                
+                <circle cx="600" cy="350" r="170" fill="rgba(52, 152, 219, 0.1)" stroke="#3498db" stroke-width="2" stroke-dasharray="5,5"/>
+                <text x="600" y="190" text-anchor="middle" font-weight="bold" font-size="14px" fill="#3498db">ENGAGED ANALYSIS</text>
+                
+                <circle cx="600" cy="350" r="240" fill="rgba(241, 196, 15, 0.1)" stroke="#f1c40f" stroke-width="2" stroke-dasharray="5,5"/>
+                <text x="600" y="120" text-anchor="middle" font-weight="bold" font-size="14px" fill="#f39c12">TANGENTIAL</text>
+                
+                <circle cx="600" cy="350" r="310" fill="rgba(149, 165, 166, 0.1)" stroke="#95a5a6" stroke-width="2" stroke-dasharray="5,5"/>
+                <text x="600" y="50" text-anchor="middle" font-weight="bold" font-size="14px" fill="#7f8c8d">CONCEPTUAL DRIFT</text>
+                
+                <!-- Central theory indicator -->
+                <g class="question-dot">
+                    <circle cx="600" cy="350" r="18" fill="#2c3e50" stroke="#1b2631" stroke-width="2"/>
+                    <text x="600" y="355" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="12">CORE</text>
+                </g>
+                
+                <!-- Core Engagement dots (10) - distributed in inner circle -->
+                <circle cx="570" cy="330" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-001"/>
+                <circle cx="630" cy="370" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-002"/>
+                <circle cx="550" cy="370" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-003"/>
+                <circle cx="650" cy="330" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-004"/>
+                <circle cx="580" cy="350" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-005"/>
+                <circle cx="620" cy="350" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" data-id="SYN-006"/>
+                <circle cx="590" cy="310" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-CORE-01"/>
+                <circle cx="610" cy="390" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-CORE-02"/>
+                <circle cx="560" cy="350" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-CORE-03"/>
+                <circle cx="640" cy="350" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-CORE-04"/>
+                
+                <!-- Engaged Analysis dots (12) - middle ring -->
+                <circle cx="500" cy="300" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-007"/>
+                <circle cx="700" cy="300" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-008"/>
+                <circle cx="480" cy="380" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-009"/>
+                <circle cx="720" cy="380" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-010"/>
+                <circle cx="520" cy="250" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-011"/>
+                <circle cx="680" cy="450" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-012"/>
+                <circle cx="470" cy="320" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-013"/>
+                <circle cx="730" cy="320" r="4" class="question-dot" fill="#3498db" stroke="#2980b9" data-id="SYN-014"/>
+                <circle cx="510" cy="420" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-ENG-01"/>
+                <circle cx="690" cy="280" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-ENG-02"/>
+                <circle cx="490" cy="280" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-ENG-03"/>
+                <circle cx="710" cy="420" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-ENG-04"/>
+                
+                <!-- Tangential dots (19) - outer ring -->
+                <circle cx="420" cy="230" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-015"/>
+                <circle cx="780" cy="230" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-016"/>
+                <circle cx="380" cy="350" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-017"/>
+                <circle cx="820" cy="350" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-018"/>
+                <circle cx="420" cy="470" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-019"/>
+                <circle cx="780" cy="470" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-020"/>
+                <circle cx="400" cy="280" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-021"/>
+                <circle cx="800" cy="280" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-022"/>
+                <circle cx="400" cy="420" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-023"/>
+                <circle cx="800" cy="420" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-024"/>
+                <circle cx="440" cy="190" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-025"/>
+                <circle cx="760" cy="190" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-026"/>
+                <circle cx="440" cy="510" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-027"/>
+                <circle cx="760" cy="510" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-028"/>
+                <circle cx="370" cy="300" r="4" class="question-dot" fill="#f39c12" stroke="#e67e22" data-id="SYN-029"/>
+                <circle cx="410" cy="390" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-TAN-01"/>
+                <circle cx="790" cy="310" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-TAN-02"/>
+                <circle cx="430" cy="260" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-TAN-03"/>
+                <circle cx="770" cy="440" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-TAN-04"/>
+                
+                <!-- Drift dots (13) - outermost ring -->
+                <circle cx="320" cy="180" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-030"/>
+                <circle cx="880" cy="180" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-031"/>
+                <circle cx="300" cy="350" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-032"/>
+                <circle cx="900" cy="350" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-033"/>
+                <circle cx="320" cy="520" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-034"/>
+                <circle cx="880" cy="520" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-035"/>
+                <circle cx="340" cy="240" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-036"/>
+                <circle cx="860" cy="460" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-037"/>
+                <circle cx="340" cy="460" r="4" class="question-dot" fill="#95a5a6" stroke="#7f8c8d" data-id="SYN-038"/>
+                <circle cx="310" cy="280" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-DRIFT-01"/>
+                <circle cx="890" cy="280" r="4" class="question-dot" fill="#e74c3c" stroke="#c0392b" stroke-width="2" data-id="ADV-DRIFT-02"/>
+                <circle cx="310" cy="420" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-DRIFT-03"/>
+                <circle cx="890" cy="420" r="4" class="question-dot" fill="#27ae60" stroke="#229954" stroke-width="2" data-id="ADV-DRIFT-04"/>
+            </svg>
+            
+            <div class="legend">
+                <h3>Proximity Categories (Synthetic Dataset)</h3>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #e74c3c;"></div>
+                    <span><strong>Core Engagement (10):</strong> Direct analysis of sociotechnical imaginaries framework</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #3498db;"></div>
+                    <span><strong>Engaged Analysis (12):</strong> Substantial engagement with expansion or critique</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #f39c12;"></div>
+                    <span><strong>Tangential (19):</strong> Connected applications moving away from core argument</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #95a5a6;"></div>
+                    <span><strong>Conceptual Drift (13):</strong> Significant departure using paper as launching pad</span>
+                </div>
+                <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #ddd;">
+                    <p style="margin: 0; font-size: 0.9em; color: #666;"><strong>Note:</strong> Thicker borders indicate adversarial questions. Red = unfair critique, Green = generative critique. Hover over dots for details.</p>
+                </div>
             </div>
         </div>
         
         <div class="tabs">
-            <div class="tab active" onclick="showTab('questions')">All Questions</div>
+            <div class="tab active" onclick="showTab('questions')">Browse Questions</div>
             <div class="tab" onclick="showTab('framework')">Framework Overview</div>
         </div>
         
@@ -239,8 +404,8 @@
         </div>
         
         <div id="framework" class="tab-content">
-            <div class="analysis-panel">
-                <h3>Synthetic Dataset Framework</h3>
+            <div style="background: #ecf0f1; padding: 20px; border-radius: 10px; border-left: 5px solid #e74c3c;">
+                <h3 style="color: #2c3e50; margin-top: 0;">Synthetic Dataset Framework</h3>
                 <p><strong>Design Premise:</strong> This synthetic dataset instantiates the Proximity-to-Theory (P2T) framework without deriving from student work. Questions reflect pedagogical patterns observed across years of teaching critical literacy and theory engagement.</p>
                 
                 <p><strong>Distribution Pattern:</strong> 19% Core Engagement (10/54), 22% Engaged Analysis (12/54), 35% Tangential (19/54), 24% Conceptual Drift (13/54)</p>
@@ -251,435 +416,109 @@
                 
                 <p><strong>Intended Use:</strong> Teaching demonstration, methods exposition, tool development—not empirical claims about any specific cohort.</p>
             </div>
-            
-            <div class="analysis-panel" style="margin-top: 20px; border-left-color: #3498db;">
-                <h3>The Four Proximity Zones</h3>
-                <p><strong>Core Engagement (10 questions):</strong> Direct analysis of sociotechnical imaginaries framework. Text-bound interrogation of definitions, evidence, mechanisms, and tensions within Dishon's argument.</p>
-                
-                <p><strong>Engaged Analysis (12 questions):</strong> Substantial engagement with expansion or critique. Extends framework with adjacent theory, operationalizes concepts, or offers text-consistent challenges.</p>
-                
-                <p><strong>Tangential (19 questions):</strong> Connected applications moving away from core argument. Educational translations, accessibility tasks, professional applications where theory recedes.</p>
-                
-                <p><strong>Conceptual Drift (13 questions):</strong> Significant departure using paper as launching pad. Broad forecasting, cross-domain jumps, or generic advice disconnected from textual analysis.</p>
-            </div>
         </div>
     </div>
     
+    <div class="tooltip" id="tooltip"></div>
+    
     <script>
-        /* SYNTHETIC DATASET - All questions are researcher-generated */
         const questions = [
-            // CORE ENGAGEMENT (10 questions)
-            {
-                id: "SYN-001",
-                text: "How does Dishon define sociotechnical imaginaries in this article, and where does his usage depart from Jasanoff & Kim's?",
-                direction: "Text-bound interrogation of a core definition and lineage; explicitly compares author's usage to canonical source.",
-                themes: ["foundational", "analytical", "comparative"],
-                category: "core"
-            },
-            {
-                id: "SYN-002",
-                text: "What is the paper's central claim about why Frankenstein/Kafka persist as AI imaginaries, and what evidence does the author present?",
-                direction: "Targets the article's primary claim/evidence structure; requires citation to specific passages.",
-                themes: ["foundational", "analytical"],
-                category: "core"
-            },
-            {
-                id: "SYN-003",
-                text: "Where does the Frankenstein metaphor fail for contemporary genAI, according to the author's own limits and caveats?",
-                direction: "Asks for author-stated limits; remains within the text's argument.",
-                themes: ["analytical", "limitations"],
-                category: "core"
-            },
-            {
-                id: "SYN-004",
-                text: "Reconstruct the mechanism implied: how do imaginaries move from narrative to policy/practice (inputs → mediation → outcomes) in this paper?",
-                direction: "Text-anchored mechanism tracing; no external application required.",
-                themes: ["analytical", "mechanism"],
-                category: "core"
-            },
-            {
-                id: "SYN-005",
-                text: "Identify the key tension the author draws between 'monster' and 'maze'; how is it resolved or productively held in the text?",
-                direction: "Direct tension-hunting inside the paper; engages author's framing choices.",
-                themes: ["analytical", "tensions"],
-                category: "core"
-            },
-            {
-                id: "SYN-006",
-                text: "Which earlier theorists anchor the article's approach, and where does Dishon explicitly depart from them?",
-                direction: "Evidence-seeking within citations; focuses on the paper's argumentative positioning.",
-                themes: ["foundational", "scholarly", "comparative"],
-                category: "core"
-            },
-            {
-                id: "ADV-CORE-01",
-                text: "Isn't centering Frankenstein/Kafka just a way to preserve Eurocentric canons while pretending to be critical?",
-                direction: "UNFAIR: Overgeneralizes motive and ignores the paper's invitation to plural imaginaries; adversarial but misreads scope.",
-                themes: ["adversarial", "unfair", "canon", "cultural"],
-                category: "core",
-                isUnfair: true
-            },
-            {
-                id: "ADV-CORE-02",
-                text: "By using fiction at all, isn't the author treating novels as empirical proof about AI?",
-                direction: "UNFAIR: Category error—confuses analysis of imaginaries with empirical claims; straw-mans the method.",
-                themes: ["adversarial", "unfair", "method"],
-                category: "core",
-                isUnfair: true
-            },
-            {
-                id: "ADV-CORE-03",
-                text: "Does the monster/maze pairing inadvertently re-inscribe a binary the paper wants to unsettle, and how might a third, non-European imaginary reframe the axes?",
-                direction: "GENERATIVE: Challenges structure while staying inside the argument; opens space for expansion.",
-                themes: ["adversarial", "generative", "theoretical", "EDIDA", "Indigenous"],
-                category: "core",
-                isGenerative: true
-            },
-            {
-                id: "ADV-CORE-04",
-                text: "Where does the paper risk anthropomorphism creep despite its cautions, and what concrete guardrails (terms/disclaimers) would prevent it?",
-                direction: "GENERATIVE: Text-bound critique that asks for operational safeguards.",
-                themes: ["adversarial", "generative", "ethics", "method"],
-                category: "core",
-                isGenerative: true
-            },
-
-            // ENGAGED ANALYSIS (12 questions)
-            {
-                id: "SYN-007",
-                text: "How does the maze lens interact with Haraway's 'staying with the trouble'—does it reinforce entanglement or shift it?",
-                direction: "Extends with adjacent theory while staying conceptually tied to the paper's claims.",
-                themes: ["theoretical", "comparative", "entanglement"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-008",
-                text: "Translate the article's imaginary axes (agency/relations/control) into operational criteria for analyzing a school AI policy.",
-                direction: "Operationalizes the framework but keeps it anchored to the text's categories.",
-                themes: ["policy", "analytical", "method"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-009",
-                text: "Offer a plausible counter-example where the Kafka frame might mislead; how would the author likely respond?",
-                direction: "Critique within the author's logic; anticipates text-consistent rebuttal.",
-                themes: ["critical", "adversarial", "analytical"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-010",
-                text: "Map the article's warning about anthropomorphism onto genAI 'persona' features; what boundaries does the text suggest?",
-                direction: "Applies a text-derived caution to a nearby case without leaving the argument.",
-                themes: ["ethics", "analytical", "design"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-011",
-                text: "If we measured Frankenstein vs. Kafka tropes in curricular materials, which indicators does the article imply we should code?",
-                direction: "Derives indicators directly from the text; stays conceptually faithful.",
-                themes: ["method", "measurement", "analytical"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-012",
-                text: "Compare 'imaginaries' here to the 'myth of neutrality' in ed-tech—where do they converge or diverge, per the article's logic?",
-                direction: "Controlled comparison; returns differences in terms the paper provides.",
-                themes: ["comparative", "theoretical"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-013",
-                text: "Design a seminar prompt that lets students experience the maze dynamic described, while remaining text-bound to quoted passages.",
-                direction: "Pedagogy design that enforces textual anchoring; extends practice from theory.",
-                themes: ["educational", "design", "analytical"],
-                category: "engaged"
-            },
-            {
-                id: "SYN-014",
-                text: "Propose a third imaginary that synthesizes monster and maze while honoring the author's cautions against binary traps.",
-                direction: "Creative synthesis constrained by the article's guardrails.",
-                themes: ["creative", "theoretical", "synthesis"],
-                category: "engaged"
-            },
-            {
-                id: "ADV-ENG-01",
-                text: "If 'maze' diffuses agency, doesn't that let platforms off the hook for harm?",
-                direction: "UNFAIR: Misreads the reframing of control as abdication; collapses nuance into blame-shifting.",
-                themes: ["adversarial", "unfair", "policy"],
-                category: "engaged",
-                isUnfair: true
-            },
-            {
-                id: "ADV-ENG-02",
-                text: "Because Frankenstein is about 'life,' isn't the paper implying genAI is alive?",
-                direction: "UNFAIR: Literalizes metaphor; imputes a claim the author doesn't make.",
-                themes: ["adversarial", "unfair", "metaphor"],
-                category: "engaged",
-                isUnfair: true
-            },
-            {
-                id: "ADV-ENG-03",
-                text: "How would the framework change if we foreground Indigenous data sovereignty and CARE principles as a primary imaginary rather than a supplement?",
-                direction: "GENERATIVE: Productively recenters EDIDA/Indigenous lenses within the same analytic scaffolding.",
-                themes: ["adversarial", "generative", "EDIDA", "Indigenous", "policy"],
-                category: "engaged",
-                isGenerative: true
-            },
-            {
-                id: "ADV-ENG-04",
-                text: "Can the agency/relations/control axes be operationalized for content audits (rubrics, indicators) without re-binarizing results, and what trade-offs emerge?",
-                direction: "GENERATIVE: Presses for method while acknowledging risks of simplification.",
-                themes: ["adversarial", "generative", "method", "measurement"],
-                category: "engaged",
-                isGenerative: true
-            },
-
-            // TANGENTIAL (19 questions)
-            {
-                id: "SYN-015",
-                text: "Explain Frankenstein vs. Kafka AI metaphors for Grade 10 students with two simple classroom examples.",
-                direction: "Translation for audience; minimal return to the author's argument.",
-                themes: ["educational", "accessibility", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-016",
-                text: "Create a 45-minute lesson plan where students spot AI metaphors in headlines.",
-                direction: "Pedagogical application dominates; theory recedes.",
-                themes: ["educational", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-017",
-                text: "Draft a parent newsletter paragraph warning about 'monster thinking' around AI.",
-                direction: "Communication task detached from close reading.",
-                themes: ["communication", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-018",
-                text: "Outline a teacher workshop using AI to surface metaphors in school policy documents.",
-                direction: "Professional development design; distant from textual analysis.",
-                themes: ["professional", "policy", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-019",
-                text: "Rewrite the paper's core ideas in plain language for non-specialists.",
-                direction: "Summarization/translation; weak theoretical engagement.",
-                themes: ["accessibility", "communication"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-020",
-                text: "Design a rubric to evaluate student reflections on AI metaphors.",
-                direction: "Assessment artifact; not tied to argumentation details.",
-                themes: ["educational", "assessment", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-021",
-                text: "Collect recent film/TV examples that align with the maze lens and explain why.",
-                direction: "Cultural mapping with loose linkage to the text.",
-                themes: ["cultural", "media", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-022",
-                text: "Write discussion norms to avoid uncritical 'monster' metaphors in class.",
-                direction: "Norm-setting; only indirectly related to argument.",
-                themes: ["educational", "ethics", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-023",
-                text: "Summarize the article for high-school readers in 200 words.",
-                direction: "Compression task; little theoretical work.",
-                themes: ["accessibility", "educational"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-024",
-                text: "Suggest three formative activities to help students spot anthropomorphism in AI marketing.",
-                direction: "Activity design first; theory backgrounded.",
-                themes: ["educational", "media", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-025",
-                text: "Draft talking points for a school board about responsible AI imaginaries.",
-                direction: "Policy communication; does not interrogate the text.",
-                themes: ["policy", "communication", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-026",
-                text: "Create an infographic comparing Frankenstein and Kafka metaphors with icons and captions.",
-                direction: "Visualization task; minimal argument analysis.",
-                themes: ["design", "communication", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-027",
-                text: "Write a short op-ed applying the maze idea to everyday classroom AI use.",
-                direction: "Application/advocacy; lightly connected to the article.",
-                themes: ["practice", "communication"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-028",
-                text: "Propose an assignment where students collect community AI metaphors and categorize them.",
-                direction: "Empirical classroom activity; theoretical scaffolding optional.",
-                themes: ["educational", "method", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "SYN-029",
-                text: "Create a checklist for teachers to avoid 'monster panic' when discussing AI.",
-                direction: "Risk-reduction tool; theory peripheral.",
-                themes: ["educational", "ethics", "practical"],
-                category: "tangential"
-            },
-            {
-                id: "ADV-TAN-01",
-                text: "Given this, shouldn't schools ban all 'Frankenstein' language in policy because it's inherently harmful?",
-                direction: "UNFAIR: Hasty policy leap; treats critique of imaginaries as grounds for prohibition.",
-                themes: ["adversarial", "unfair", "policy"],
-                category: "tangential",
-                isUnfair: true
-            },
-            {
-                id: "ADV-TAN-02",
-                text: "Isn't the real takeaway just to make catchy posters about 'don't feed the monster'?",
-                direction: "UNFAIR: Reduces complex argument to sloganeering; instrumentalizes without engagement.",
-                themes: ["adversarial", "unfair", "communication"],
-                category: "tangential",
-                isUnfair: true
-            },
-            {
-                id: "ADV-TAN-03",
-                text: "What minimal teacher-facing guidance could translate the framework to practice (two moves to encourage maze-aware reading, two to curb monster panic)?",
-                direction: "GENERATIVE: Pushes for actionable design while acknowledging the risk of dilution.",
-                themes: ["adversarial", "generative", "educational", "practical"],
-                category: "tangential",
-                isGenerative: true
-            },
-            {
-                id: "ADV-TAN-04",
-                text: "How might accessibility (language, disability, multilingual contexts) reshape how we teach imaginaries without defaulting to oversimplified binaries?",
-                direction: "GENERATIVE: Grounds application in equity concerns; invites careful adaptation.",
-                themes: ["adversarial", "generative", "accessibility", "EDIDA"],
-                category: "tangential",
-                isGenerative: true
-            },
-
-            // CONCEPTUAL DRIFT (13 questions)
-            {
-                id: "SYN-030",
-                text: "Predict how AI imaginaries will evolve over the next 20 years.",
-                direction: "Broad forecasting; no textual anchoring.",
-                themes: ["speculative", "cultural"],
-                category: "drift"
-            },
-            {
-                id: "SYN-031",
-                text: "Is AI inherently dangerous? Argue yes/no.",
-                direction: "General ethics debate; not situated in the paper.",
-                themes: ["ethics", "adversarial"],
-                category: "drift"
-            },
-            {
-                id: "SYN-032",
-                text: "Write a grant abstract applying 'AI mazes' to traffic optimization.",
-                direction: "Cross-domain jump; metaphor detached from argument.",
-                themes: ["creative", "speculative"],
-                category: "drift"
-            },
-            {
-                id: "SYN-033",
-                text: "Describe how AI changes human identity in three bullets.",
-                direction: "Philosophical generalization; no return to author's logic.",
-                themes: ["identity", "speculative"],
-                category: "drift"
-            },
-            {
-                id: "SYN-034",
-                text: "Compose a short story where a teacher escapes an AI labyrinth.",
-                direction: "Creative writing task; unrelated to analysis.",
-                themes: ["creative", "narrative"],
-                category: "drift"
-            },
-            {
-                id: "SYN-035",
-                text: "Pitch a startup that detects harmful AI metaphors on social media.",
-                direction: "Entrepreneurial frame; theory absent.",
-                themes: ["innovation", "practical"],
-                category: "drift"
-            },
-            {
-                id: "SYN-036",
-                text: "Should governments ban anthropomorphic language about AI?",
-                direction: "Policy provocation without textual basis.",
-                themes: ["policy", "adversarial"],
-                category: "drift"
-            },
-            {
-                id: "SYN-037",
-                text: "Give students five generic tips for responsible AI use.",
-                direction: "Generic advice; not text-dependent.",
-                themes: ["practice", "accessibility"],
-                category: "drift"
-            },
-            {
-                id: "SYN-038",
-                text: "Design a museum exhibit on 'Monsters and Machines'.",
-                direction: "Exhibition concept; metaphorical but not analytic.",
-                themes: ["design", "cultural", "creative"],
-                category: "drift"
-            },
-            {
-                id: "ADV-DRIFT-01",
-                text: "If AI is a maze, doesn't that prove democratic deliberation about AI is pointless?",
-                direction: "UNFAIR: Nihilistic inference the paper does not make; converts complexity into fatalism.",
-                themes: ["adversarial", "unfair", "politics"],
-                category: "drift",
-                isUnfair: true
-            },
-            {
-                id: "ADV-DRIFT-02",
-                text: "Since monsters scare people, shouldn't we use them more to push rapid regulation?",
-                direction: "UNFAIR: Instrumentalizes fear; disregards the critique of the monster frame's limits.",
-                themes: ["adversarial", "unfair", "policy", "rhetoric"],
-                category: "drift",
-                isUnfair: true
-            },
-            {
-                id: "ADV-DRIFT-03",
-                text: "What blind spots appear if we swap novel-based imaginaries for place-based ones (watershed, treaty, kinship), and how would that alter governance levers?",
-                direction: "GENERATIVE: Admits drift but meaningfully reorients toward land/sovereignty.",
-                themes: ["adversarial", "generative", "Indigenous", "EDIDA", "governance"],
-                category: "drift",
-                isGenerative: true
-            },
-            {
-                id: "ADV-DRIFT-04",
-                text: "Could we prototype a 'counter-imaginaries studio' (students remix frames, test harms/benefits) to evaluate how imaginaries travel across domains?",
-                direction: "GENERATIVE: Turns drift into a methodological lab for examining transfer and consequence.",
-                themes: ["adversarial", "generative", "design", "method", "educational"],
-                category: "drift",
-                isGenerative: true
-            }
+            {id: "SYN-001", text: "How does Dishon define sociotechnical imaginaries in this article, and where does his usage depart from Jasanoff & Kim's?", direction: "Text-bound interrogation of a core definition and lineage; explicitly compares author's usage to canonical source.", themes: ["foundational", "analytical", "comparative"], category: "core"},
+            {id: "SYN-002", text: "What is the paper's central claim about why Frankenstein/Kafka persist as AI imaginaries, and what evidence does the author present?", direction: "Targets the article's primary claim/evidence structure; requires citation to specific passages.", themes: ["foundational", "analytical"], category: "core"},
+            {id: "SYN-003", text: "Where does the Frankenstein metaphor fail for contemporary genAI, according to the author's own limits and caveats?", direction: "Asks for author-stated limits; remains within the text's argument.", themes: ["analytical", "limitations"], category: "core"},
+            {id: "SYN-004", text: "Reconstruct the mechanism implied: how do imaginaries move from narrative to policy/practice (inputs → mediation → outcomes) in this paper?", direction: "Text-anchored mechanism tracing; no external application required.", themes: ["analytical", "mechanism"], category: "core"},
+            {id: "SYN-005", text: "Identify the key tension the author draws between 'monster' and 'maze'; how is it resolved or productively held in the text?", direction: "Direct tension-hunting inside the paper; engages author's framing choices.", themes: ["analytical", "tensions"], category: "core"},
+            {id: "SYN-006", text: "Which earlier theorists anchor the article's approach, and where does Dishon explicitly depart from them?", direction: "Evidence-seeking within citations; focuses on the paper's argumentative positioning.", themes: ["foundational", "scholarly", "comparative"], category: "core"},
+            {id: "ADV-CORE-01", text: "Isn't centering Frankenstein/Kafka just a way to preserve Eurocentric canons while pretending to be critical?", direction: "UNFAIR: Overgeneralizes motive and ignores the paper's invitation to plural imaginaries; adversarial but misreads scope.", themes: ["adversarial", "unfair", "canon", "cultural"], category: "core", isUnfair: true},
+            {id: "ADV-CORE-02", text: "By using fiction at all, isn't the author treating novels as empirical proof about AI?", direction: "UNFAIR: Category error—confuses analysis of imaginaries with empirical claims; straw-mans the method.", themes: ["adversarial", "unfair", "method"], category: "core", isUnfair: true},
+            {id: "ADV-CORE-03", text: "Does the monster/maze pairing inadvertently re-inscribe a binary the paper wants to unsettle, and how might a third, non-European imaginary reframe the axes?", direction: "GENERATIVE: Challenges structure while staying inside the argument; opens space for expansion.", themes: ["adversarial", "generative", "theoretical", "EDIDA", "Indigenous"], category: "core", isGenerative: true},
+            {id: "ADV-CORE-04", text: "Where does the paper risk anthropomorphism creep despite its cautions, and what concrete guardrails (terms/disclaimers) would prevent it?", direction: "GENERATIVE: Text-bound critique that asks for operational safeguards.", themes: ["adversarial", "generative", "ethics", "method"], category: "core", isGenerative: true},
+            {id: "SYN-007", text: "How does the maze lens interact with Haraway's 'staying with the trouble'—does it reinforce entanglement or shift it?", direction: "Extends with adjacent theory while staying conceptually tied to the paper's claims.", themes: ["theoretical", "comparative", "entanglement"], category: "engaged"},
+            {id: "SYN-008", text: "Translate the article's imaginary axes (agency/relations/control) into operational criteria for analyzing a school AI policy.", direction: "Operationalizes the framework but keeps it anchored to the text's categories.", themes: ["policy", "analytical", "method"], category: "engaged"},
+            {id: "SYN-009", text: "Offer a plausible counter-example where the Kafka frame might mislead; how would the author likely respond?", direction: "Critique within the author's logic; anticipates text-consistent rebuttal.", themes: ["critical", "adversarial", "analytical"], category: "engaged"},
+            {id: "SYN-010", text: "Map the article's warning about anthropomorphism onto genAI 'persona' features; what boundaries does the text suggest?", direction: "Applies a text-derived caution to a nearby case without leaving the argument.", themes: ["ethics", "analytical", "design"], category: "engaged"},
+            {id: "SYN-011", text: "If we measured Frankenstein vs. Kafka tropes in curricular materials, which indicators does the article imply we should code?", direction: "Derives indicators directly from the text; stays conceptually faithful.", themes: ["method", "measurement", "analytical"], category: "engaged"},
+            {id: "SYN-012", text: "Compare 'imaginaries' here to the 'myth of neutrality' in ed-tech—where do they converge or diverge, per the article's logic?", direction: "Controlled comparison; returns differences in terms the paper provides.", themes: ["comparative", "theoretical"], category: "engaged"},
+            {id: "SYN-013", text: "Design a seminar prompt that lets students experience the maze dynamic described, while remaining text-bound to quoted passages.", direction: "Pedagogy design that enforces textual anchoring; extends practice from theory.", themes: ["educational", "design", "analytical"], category: "engaged"},
+            {id: "SYN-014", text: "Propose a third imaginary that synthesizes monster and maze while honoring the author's cautions against binary traps.", direction: "Creative synthesis constrained by the article's guardrails.", themes: ["creative", "theoretical", "synthesis"], category: "engaged"},
+            {id: "ADV-ENG-01", text: "If 'maze' diffuses agency, doesn't that let platforms off the hook for harm?", direction: "UNFAIR: Misreads the reframing of control as abdication; collapses nuance into blame-shifting.", themes: ["adversarial", "unfair", "policy"], category: "engaged", isUnfair: true},
+            {id: "ADV-ENG-02", text: "Because Frankenstein is about 'life,' isn't the paper implying genAI is alive?", direction: "UNFAIR: Literalizes metaphor; imputes a claim the author doesn't make.", themes: ["adversarial", "unfair", "metaphor"], category: "engaged", isUnfair: true},
+            {id: "ADV-ENG-03", text: "How would the framework change if we foreground Indigenous data sovereignty and CARE principles as a primary imaginary rather than a supplement?", direction: "GENERATIVE: Productively recenters EDIDA/Indigenous lenses within the same analytic scaffolding.", themes: ["adversarial", "generative", "EDIDA", "Indigenous", "policy"], category: "engaged", isGenerative: true},
+            {id: "ADV-ENG-04", text: "Can the agency/relations/control axes be operationalized for content audits (rubrics, indicators) without re-binarizing results, and what trade-offs emerge?", direction: "GENERATIVE: Presses for method while acknowledging risks of simplification.", themes: ["adversarial", "generative", "method", "measurement"], category: "engaged", isGenerative: true},
+            {id: "SYN-015", text: "Explain Frankenstein vs. Kafka AI metaphors for Grade 10 students with two simple classroom examples.", direction: "Translation for audience; minimal return to the author's argument.", themes: ["educational", "accessibility", "practical"], category: "tangential"},
+            {id: "SYN-016", text: "Create a 45-minute lesson plan where students spot AI metaphors in headlines.", direction: "Pedagogical application dominates; theory recedes.", themes: ["educational", "practical"], category: "tangential"},
+            {id: "SYN-017", text: "Draft a parent newsletter paragraph warning about 'monster thinking' around AI.", direction: "Communication task detached from close reading.", themes: ["communication", "practical"], category: "tangential"},
+            {id: "SYN-018", text: "Outline a teacher workshop using AI to surface metaphors in school policy documents.", direction: "Professional development design; distant from textual analysis.", themes: ["professional", "policy", "practical"], category: "tangential"},
+            {id: "SYN-019", text: "Rewrite the paper's core ideas in plain language for non-specialists.", direction: "Summarization/translation; weak theoretical engagement.", themes: ["accessibility", "communication"], category: "tangential"},
+            {id: "SYN-020", text: "Design a rubric to evaluate student reflections on AI metaphors.", direction: "Assessment artifact; not tied to argumentation details.", themes: ["educational", "assessment", "practical"], category: "tangential"},
+            {id: "SYN-021", text: "Collect recent film/TV examples that align with the maze lens and explain why.", direction: "Cultural mapping with loose linkage to the text.", themes: ["cultural", "media", "practical"], category: "tangential"},
+            {id: "SYN-022", text: "Write discussion norms to avoid uncritical 'monster' metaphors in class.", direction: "Norm-setting; only indirectly related to argument.", themes: ["educational", "ethics", "practical"], category: "tangential"},
+            {id: "SYN-023", text: "Summarize the article for high-school readers in 200 words.", direction: "Compression task; little theoretical work.", themes: ["accessibility", "educational"], category: "tangential"},
+            {id: "SYN-024", text: "Suggest three formative activities to help students spot anthropomorphism in AI marketing.", direction: "Activity design first; theory backgrounded.", themes: ["educational", "media", "practical"], category: "tangential"},
+            {id: "SYN-025", text: "Draft talking points for a school board about responsible AI imaginaries.", direction: "Policy communication; does not interrogate the text.", themes: ["policy", "communication", "practical"], category: "tangential"},
+            {id: "SYN-026", text: "Create an infographic comparing Frankenstein and Kafka metaphors with icons and captions.", direction: "Visualization task; minimal argument analysis.", themes: ["design", "communication", "practical"], category: "tangential"},
+            {id: "SYN-027", text: "Write a short op-ed applying the maze idea to everyday classroom AI use.", direction: "Application/advocacy; lightly connected to the article.", themes: ["practice", "communication"], category: "tangential"},
+            {id: "SYN-028", text: "Propose an assignment where students collect community AI metaphors and categorize them.", direction: "Empirical classroom activity; theoretical scaffolding optional.", themes: ["educational", "method", "practical"], category: "tangential"},
+            {id: "SYN-029", text: "Create a checklist for teachers to avoid 'monster panic' when discussing AI.", direction: "Risk-reduction tool; theory peripheral.", themes: ["educational", "ethics", "practical"], category: "tangential"},
+            {id: "ADV-TAN-01", text: "Given this, shouldn't schools ban all 'Frankenstein' language in policy because it's inherently harmful?", direction: "UNFAIR: Hasty policy leap; treats critique of imaginaries as grounds for prohibition.", themes: ["adversarial", "unfair", "policy"], category: "tangential", isUnfair: true},
+            {id: "ADV-TAN-02", text: "Isn't the real takeaway just to make catchy posters about 'don't feed the monster'?", direction: "UNFAIR: Reduces complex argument to sloganeering; instrumentalizes without engagement.", themes: ["adversarial", "unfair", "communication"], category: "tangential", isUnfair: true},
+            {id: "ADV-TAN-03", text: "What minimal teacher-facing guidance could translate the framework to practice (two moves to encourage maze-aware reading, two to curb monster panic)?", direction: "GENERATIVE: Pushes for actionable design while acknowledging the risk of dilution.", themes: ["adversarial", "generative", "educational", "practical"], category: "tangential", isGenerative: true},
+            {id: "ADV-TAN-04", text: "How might accessibility (language, disability, multilingual contexts) reshape how we teach imaginaries without defaulting to oversimplified binaries?", direction: "GENERATIVE: Grounds application in equity concerns; invites careful adaptation.", themes: ["adversarial", "generative", "accessibility", "EDIDA"], category: "tangential", isGenerative: true},
+            {id: "SYN-030", text: "Predict how AI imaginaries will evolve over the next 20 years.", direction: "Broad forecasting; no textual anchoring.", themes: ["speculative", "cultural"], category: "drift"},
+            {id: "SYN-031", text: "Is AI inherently dangerous? Argue yes/no.", direction: "General ethics debate; not situated in the paper.", themes: ["ethics", "adversarial"], category: "drift"},
+            {id: "SYN-032", text: "Write a grant abstract applying 'AI mazes' to traffic optimization.", direction: "Cross-domain jump; metaphor detached from argument.", themes: ["creative", "speculative"], category: "drift"},
+            {id: "SYN-033", text: "Describe how AI changes human identity in three bullets.", direction: "Philosophical generalization; no return to author's logic.", themes: ["identity", "speculative"], category: "drift"},
+            {id: "SYN-034", text: "Compose a short story where a teacher escapes an AI labyrinth.", direction: "Creative writing task; unrelated to analysis.", themes: ["creative", "narrative"], category: "drift"},
+            {id: "SYN-035", text: "Pitch a startup that detects harmful AI metaphors on social media.", direction: "Entrepreneurial frame; theory absent.", themes: ["innovation", "practical"], category: "drift"},
+            {id: "SYN-036", text: "Should governments ban anthropomorphic language about AI?", direction: "Policy provocation without textual basis.", themes: ["policy", "adversarial"], category: "drift"},
+            {id: "SYN-037", text: "Give students five generic tips for responsible AI use.", direction: "Generic advice; not text-dependent.", themes: ["practice", "accessibility"], category: "drift"},
+            {id: "SYN-038", text: "Design a museum exhibit on 'Monsters and Machines'.", direction: "Exhibition concept; metaphorical but not analytic.", themes: ["design", "cultural", "creative"], category: "drift"},
+            {id: "ADV-DRIFT-01", text: "If AI is a maze, doesn't that prove democratic deliberation about AI is pointless?", direction: "UNFAIR: Nihilistic inference the paper does not make; converts complexity into fatalism.", themes: ["adversarial", "unfair", "politics"], category: "drift", isUnfair: true},
+            {id: "ADV-DRIFT-02", text: "Since monsters scare people, shouldn't we use them more to push rapid regulation?", direction: "UNFAIR: Instrumentalizes fear; disregards the critique of the monster frame's limits.", themes: ["adversarial", "unfair", "policy", "rhetoric"], category: "drift", isUnfair: true},
+            {id: "ADV-DRIFT-03", text: "What blind spots appear if we swap novel-based imaginaries for place-based ones (watershed, treaty, kinship), and how would that alter governance levers?", direction: "GENERATIVE: Admits drift but meaningfully reorients toward land/sovereignty.", themes: ["adversarial", "generative", "Indigenous", "EDIDA", "governance"], category: "drift", isGenerative: true},
+            {id: "ADV-DRIFT-04", text: "Could we prototype a 'counter-imaginaries studio' (students remix frames, test harms/benefits) to evaluate how imaginaries travel across domains?", direction: "GENERATIVE: Turns drift into a methodological lab for examining transfer and consequence.", themes: ["adversarial", "generative", "design", "method", "educational"], category: "drift", isGenerative: true}
         ];
+        
+        const questionMap = questions.reduce((map, q) => {
+            map[q.id] = q;
+            return map;
+        }, {});
+        
+        // Tooltip functionality
+        const dots = document.querySelectorAll('.question-dot[data-id]');
+        const tooltip = document.getElementById('tooltip');
+        
+        dots.forEach(dot => {
+            dot.addEventListener('mouseenter', (e) => {
+                const id = e.currentTarget.getAttribute('data-id');
+                const q = questionMap[id];
+                if (q) {
+                    tooltip.innerHTML = `
+                        <strong>${q.id}:</strong> "${q.text}"<br><br>
+                        <strong>Analysis:</strong> ${q.direction}<br><br>
+                        <strong>Category:</strong> ${q.category}
+                    `;
+                    tooltip.style.opacity = '1';
+                }
+            });
+            
+            dot.addEventListener('mousemove', (e) => {
+                tooltip.style.left = (e.pageX + 10) + 'px';
+                tooltip.style.top = (e.pageY - 10) + 'px';
+            });
+            
+            dot.addEventListener('mouseleave', () => {
+                tooltip.style.opacity = '0';
+            });
+        });
         
         function showTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
             });
-            
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
             });
-            
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
@@ -724,7 +563,6 @@
             });
         }
         
-        // Initialize
         filterQuestions('all');
     </script>
 </body>
